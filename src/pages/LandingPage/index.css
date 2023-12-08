@@ -1,0 +1,9 @@
+.bannerBack {
+    max-width: 430px;
+    max-height: 618px;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+
