@@ -4,7 +4,7 @@ import PublicLayout from "../../layouts/Public/PublicLayout";
 const LoginPage = () => {
   return (
     <>
-      <PublicLayout children={LoginForm()} />
+      <PublicLayout titleText={"Sign In"} children={LoginForm()} />
     </>
   );
 };

@@ -7,4 +7,9 @@ export interface Login {
 
 export interface Layout {
   children: ReactNode;
+  titleText: string;
+}
+
+export interface ButtonProps {
+  buttonText: string;
 }

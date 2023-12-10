@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { fetchLogin } from "../../utils/fetchAPI";
 import { Login } from "../../interfaces/interface";
+import { GoogleAuthButton } from "..";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const LoginForm = () => {
           label='Username'
           variant='outlined'
           margin='normal'
+          size='small'
           {...formik.getFieldProps("username")}
           error={formik.touched.username && Boolean(formik.errors.username)}
           helperText={formik.touched.username && formik.errors.username}
@@ -69,6 +71,7 @@ const LoginForm = () => {
           type={showPassword ? "text" : "password"}
           variant='outlined'
           margin='normal'
+          size='small'
           {...formik.getFieldProps("password")}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
@@ -82,21 +85,23 @@ const LoginForm = () => {
             ),
           }}
         />
-        <Box display='flex' justifyContent='space-between' alignItems='center' my={3}>
-          <Button type='submit' color='primary' variant='contained' disabled={isFormEmpty}>
-            Login
-          </Button>
-          <Typography variant='overline' color='secondary'>
-            <Link to='/reset-password' target='_blank' style={{ textDecoration: "none", color: "gray" }}>
-              Forgot your password?
-            </Link>
+        <Button
+          type='submit'
+          color='primary'
+          variant='contained'
+          disabled={isFormEmpty}
+          style={{ width: 114, borderRadius: 15, marginTop: 25 }}
+        >
+          Sign In
+        </Button>
+        <Box display='block' alignItems='center' mt={3}>
+          <Typography variant='body1' color='black' mt={2}>
+            Or continue with :
           </Typography>
+          <div style={{ marginTop: 15 }}>
+            <GoogleAuthButton buttonText='Sign in' />
+          </div>
         </Box>
-        <Typography variant='overline' color='secondary'>
-          <Link to='/register' target='_blank' style={{ textDecoration: "none", color: "gray" }}>
-            Dont have any account? Sign up now!
-          </Link>
-        </Typography>
       </form>
     </>
   );
