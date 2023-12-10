@@ -9,7 +9,6 @@ const LandingPage = () => {
     return (
         <>
             <div>
-                <Navbar/>
                 <Banner/>
                 <AboutUs/>
             </div>
