@@ -1,6 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          borderRadius: 15,
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: ["Poppins", "sans-serif"].join(","),
     h1: {
