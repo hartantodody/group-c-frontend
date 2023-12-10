@@ -1,9 +1,11 @@
+import "./index.css"
+
 const AboutUs = () => {
   return (
     <>
       <div className="container">
-        <h2>About Us</h2>
-        <p>
+        <h2 className="header">About Us</h2>
+        <p className="paragraph">
           Meet Helena, your all-in-one wellness companion. Seamlessly track
           water, calories, steps, and sleep. Engage in mindful meditation and
           monitor your mood for emotional insights. Empowering your journey to a
