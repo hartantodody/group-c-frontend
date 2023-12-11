@@ -3,7 +3,7 @@
 
 .back-image {
     position: absolute;
-    width: 100%;
+    width: 425px;
     z-index: 0;
 }
 
@@ -23,6 +23,7 @@
     flex-direction: column;
     gap: 40px;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 .image {

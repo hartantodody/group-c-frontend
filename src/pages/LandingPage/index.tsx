@@ -1,6 +1,6 @@
 
 import "./index.css"
-import { AboutUs, Banner, Navbar } from "../../layout";
+import { AboutUs, Banner, Feature, Footer } from "../../layout";
 
 const LandingPage = () => {
 
@@ -11,6 +11,8 @@ const LandingPage = () => {
             <div>
                 <Banner/>
                 <AboutUs/>
+                <Feature/>
+                <Footer/>
             </div>
         </>
     )

@@ -1,8 +1,10 @@
 import "./index.css"
+import background from "../../assets/about-us-background.svg"
 
 const AboutUs = () => {
   return (
     <>
+      <img className="background" src={background} alt="about us background" />
       <div className="container">
         <h2 className="header">About Us</h2>
         <p className="paragraph">
