@@ -8,10 +8,11 @@ body {
     margin: 0;
     background-color: #005792;
     text-align: center;
+    height: 100svh;
   }
 
   .base-layout {
-    height: 100vh
+    height: 100%;
   }
   
   .logo {
@@ -23,8 +24,8 @@ body {
     border-radius: 15px 15px 0 0;
     background-color: #ffffff;
     width: 100%;
-    height: calc(100%);
     overflow: hidden;
+    height: calc(100vh);
   }
   
   .login-container {

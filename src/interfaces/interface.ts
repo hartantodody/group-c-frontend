@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { number } from "yup";
 
 export interface Login {
   username: string;
@@ -9,6 +10,15 @@ export interface Register {
   username: string;
   password: string;
   email: string;
+}
+
+export interface Profile {
+  nickname: string;
+  age: number;
+  gender: string;
+  height: number;
+  weight: number;
+  activeness: string;
 }
 
 export interface Layout {

@@ -37,7 +37,7 @@ const RegistrationForm = () => {
       .then((data) => {
         if (data && data.token) {
           localStorage.setItem("token", data.token);
-          navigate("/dashboard");
+          navigate("/register-profile");
         } else {
           alert("Invalid data format received from server");
         }
