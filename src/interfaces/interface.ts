@@ -5,6 +5,12 @@ export interface Login {
   password: string;
 }
 
+export interface Register {
+  username: string;
+  password: string;
+  email: string;
+}
+
 export interface Layout {
   children: ReactNode;
   titleText: string;

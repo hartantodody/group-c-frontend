@@ -3,12 +3,6 @@ import "./PublicLayout.css";
 import BackgroundLogo from "../../assets/bg-logo-fade-blue.svg";
 import Typography from "@mui/material/Typography";
 
-const svgStyle: React.CSSProperties = {
-  position: "absolute",
-  minWidth: "570px",
-  transform: "rotate(0deg) translateX(5%) translateY(0px) ",
-};
-
 const typographyStyle: React.CSSProperties = {
   paddingTop: "65px",
   fontFamily: "Montserrat, sans-serif",
