@@ -22,11 +22,11 @@ const Navbar = () => {
     const navigate = useNavigate();
     
     const navigateToRegister = () => {
-        navigate("/register");
+        navigate("/signup");
     };
 
     const navigateToLogin = () => {
-        navigate("/login");
+        navigate("/signin");
     };
 
   return (

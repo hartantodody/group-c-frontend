@@ -9,7 +9,7 @@ const Banner = () => {
     const navigate = useNavigate();
 
     const navigateToRegister = () => {
-        navigate("/register");
+        navigate("/signup");
     };
 
     return (
