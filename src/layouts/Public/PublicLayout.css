@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #005792;
+    text-align: center;
+  }
+
+  .base-layout {
+    height: 100vh
+  }
+  
+  .logo {
+    height: auto;
+    padding: 95px 0 78px 0;
+  }
+
+  .card{
+    border-radius: 15px 15px 0 0;
+    background-color: #ffffff;
+    width: 100%;
+    height: calc(100%);
+    overflow: hidden;
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  
+  .logo-svg{
+    min-width: 560px;
+    position: fixed;
+    transform: rotate(22.5deg) translateX(60%) translateY(30%);
+  }
+
+  .login-card {
+    padding: 51px;
+  }
