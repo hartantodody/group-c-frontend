@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { GoogleAuthButton } from "..";
 import { fetchRegister } from "../../utils/fetchAPI";
 import { Register } from "../../interfaces/interface";
+import Swal from "sweetalert2";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -22,22 +23,34 @@ const RegistrationForm = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters")
+      .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, "Password must be alphanumeric"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Confirm Password is required"),
-    email: Yup.string().email("Invalid email format").required("Email is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required")
+      .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|co\.id)$/, "Invalid email domain"),
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onSubmit = (values: Register) => {
-    fetchRegister(values)
+  const onSubmit = ({ username, password, email }: Register) => {
+    fetchRegister({ username, password, email })
       .then((data) => {
-        if (data && data.token) {
-          localStorage.setItem("token", data.token);
+        if (data.success) {
           navigate("/register-profile");
+          Swal.fire({
+            icon: "success",
+            title: "Registration",
+            text: "Registration success!",
+            confirmButtonText: "Okay",
+            confirmButtonColor: "#005792",
+          });
         } else {
           alert("Invalid data format received from server");
         }
