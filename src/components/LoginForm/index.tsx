@@ -5,13 +5,15 @@ import TextField from "@mui/material/TextField";
 import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Link, useNavigate } from "react-router-dom";
 
 import { fetchLogin } from "../../utils/fetchAPI";
 import { Login } from "../../interfaces/interface";
 import { GoogleAuthButton } from "..";
 
 const LoginForm = () => {
+  const [isSubmitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
     username: "",
@@ -24,16 +26,20 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: Login) => {
+    setSubmitting(true);
     fetchLogin(values)
       .then((data) => {
         if (data && data.token) {
           localStorage.setItem("token", data.token);
+          setSubmitting(false);
           navigate("/dashboard");
         } else {
           alert("Invalid data format received from server");
+          setSubmitting(false);
         }
       })
       .catch((error) => alert(`Error in main code: ${error.message}`));
+    setSubmitting(false);
   };
 
   const formik = useFormik({
@@ -88,20 +94,28 @@ const LoginForm = () => {
           type='submit'
           color='primary'
           variant='contained'
-          disabled={isFormEmpty}
+          disabled={isFormEmpty || isSubmitting}
           style={{ width: 114, borderRadius: 15, marginTop: 25 }}
         >
-          Sign In
+          {isSubmitting ? <CircularProgress /> : "Sign In"}
         </Button>
-        <Box display='block' alignItems='center' mt={3}>
-          <Typography variant='body1' color='black' mt={2}>
-            Or continue with :
-          </Typography>
-          <div style={{ marginTop: 15 }}>
-            <GoogleAuthButton buttonText='Sign in' />
-          </div>
-        </Box>
       </form>
+      <Box display='block' alignItems='center' justifyContent='center' mx='auto' mt={3} textAlign='center'>
+        <Typography variant='body1' color='black' mt={2}>
+          Or continue with:
+        </Typography>
+        <div style={{ marginTop: 15 }}>
+          <GoogleAuthButton buttonText='Sign in' />
+        </div>
+        <Typography variant='body1' color='black' mt={5}>
+          Doesn't have an account?
+        </Typography>
+        <Typography variant='body1' style={{ fontWeight: "bold" }}>
+          <Link to={"/signup"} style={{ textDecoration: "none", color: "black" }}>
+            Register now
+          </Link>
+        </Typography>
+      </Box>
     </>
   );
 };
