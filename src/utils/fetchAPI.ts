@@ -27,7 +27,7 @@ export const fetchRegister = async (values: Register) => {
       },
       body: JSON.stringify(values),
     });
-
+    console.log(values);
     const data = await response.json();
     return data;
   } catch (error) {
