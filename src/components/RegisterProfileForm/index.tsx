@@ -64,50 +64,54 @@ const RegisterProfileForm = () => {
           error={formik.touched.nickname && Boolean(formik.errors.nickname)}
           helperText={formik.touched.nickname && formik.errors.nickname}
         />
-        <TextField
-          fullWidth
-          label='Age'
-          variant='outlined'
-          margin='normal'
-          size='small'
-          type='number'
-          {...formik.getFieldProps("age")}
-          error={formik.touched.age && Boolean(formik.errors.age)}
-          helperText={formik.touched.age && formik.errors.age}
-        />
-        <FormControl fullWidth variant='outlined' margin='normal' size='small'>
-          <InputLabel htmlFor='gender'>Gender</InputLabel>
-          <Select
-            label='Gender'
-            {...formik.getFieldProps("gender")}
-            error={formik.touched.gender && Boolean(formik.errors.gender)}
-          >
-            <MenuItem value='man'>Man</MenuItem>
-            <MenuItem value='woman'>Woman</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField
-          fullWidth
-          label='Height'
-          variant='outlined'
-          margin='normal'
-          size='small'
-          type='number'
-          {...formik.getFieldProps("height")}
-          error={formik.touched.height && Boolean(formik.errors.height)}
-          helperText={formik.touched.height && formik.errors.height}
-        />
-        <TextField
-          fullWidth
-          label='Weight'
-          variant='outlined'
-          margin='normal'
-          size='small'
-          type='number'
-          {...formik.getFieldProps("weight")}
-          error={formik.touched.weight && Boolean(formik.errors.weight)}
-          helperText={formik.touched.weight && formik.errors.weight}
-        />
+        <div style={{ display: "flex", margin: "auto", gap: 5 }}>
+          <TextField
+            fullWidth
+            label='Age'
+            variant='outlined'
+            margin='normal'
+            size='small'
+            type='number'
+            {...formik.getFieldProps("age")}
+            error={formik.touched.age && Boolean(formik.errors.age)}
+            helperText={formik.touched.age && formik.errors.age}
+          />
+          <FormControl fullWidth variant='outlined' margin='normal' size='small'>
+            <InputLabel htmlFor='gender'>Gender</InputLabel>
+            <Select
+              label='Gender'
+              {...formik.getFieldProps("gender")}
+              error={formik.touched.gender && Boolean(formik.errors.gender)}
+            >
+              <MenuItem value='man'>Man</MenuItem>
+              <MenuItem value='woman'>Woman</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div style={{ display: "flex", margin: "auto", gap: 5 }}>
+          <TextField
+            fullWidth
+            label='Height'
+            variant='outlined'
+            margin='normal'
+            size='small'
+            type='number'
+            {...formik.getFieldProps("height")}
+            error={formik.touched.height && Boolean(formik.errors.height)}
+            helperText={formik.touched.height && formik.errors.height}
+          />
+          <TextField
+            fullWidth
+            label='Weight'
+            variant='outlined'
+            margin='normal'
+            size='small'
+            type='number'
+            {...formik.getFieldProps("weight")}
+            error={formik.touched.weight && Boolean(formik.errors.weight)}
+            helperText={formik.touched.weight && formik.errors.weight}
+          />
+        </div>
         <FormControl fullWidth variant='outlined' margin='normal' size='small'>
           <InputLabel htmlFor='gender'>Activeness</InputLabel>
           <Select
