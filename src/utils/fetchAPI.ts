@@ -42,11 +42,11 @@ export const fetchRegisterProfile = async (values: Profile) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
-
+    console.log(values);
     const data = await response.json();
     return data;
   } catch (error) {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { TextField, Select, MenuItem, Button, FormControl, InputLabel, Typography } from "@mui/material";
 import { fetchRegisterProfile } from "../../utils/fetchAPI";
 import { Profile } from "../../interfaces/interface";
+import Swal from "sweetalert2";
 
 const RegisterProfileForm = () => {
   const navigate = useNavigate();
@@ -28,11 +29,17 @@ const RegisterProfileForm = () => {
   const onSubmit = (values: Profile) => {
     fetchRegisterProfile(values)
       .then((data) => {
-        if (data && data.token) {
-          localStorage.setItem("token", data.token);
+        if (data.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Registration",
+            text: "Profile registration successful!",
+            confirmButtonText: "Okay",
+            confirmButtonColor: "#005792",
+          });
           navigate("/dashboard");
         } else {
-          alert("Invalid data format received from server");
+          alert("Request failed!");
         }
       })
       .catch((error) => alert(`Error in main code: ${error.message}`));
@@ -113,18 +120,23 @@ const RegisterProfileForm = () => {
             <MenuItem value='active'>Active (Exercise : 5x a week)</MenuItem>
           </Select>
         </FormControl>
-        <Button
-          type='submit'
-          color='primary'
-          variant='contained'
-          style={{ width: 114, borderRadius: 15, marginTop: 25 }}
-        >
+        <Button type='submit' color='primary' variant='contained' style={{ width: 114, borderRadius: 15, margin: 25 }}>
           Submit
         </Button>
       </form>
       <div>
-        <Typography style={{ color: "grey" }}>
-          <Link to='/dashboard' style={{ textDecoration: "none" }}>
+        <Typography fontSize={16}>
+          <Link
+            to='/dashboard'
+            style={{
+              textDecoration: "none",
+              color: "grey",
+              transition: "color 0.3s",
+              cursor: "pointer",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "black")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "grey")}
+          >
             Skip for now {">>>"}
           </Link>
         </Typography>
