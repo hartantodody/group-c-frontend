@@ -21,11 +21,15 @@ body {
   }
 
   .card{
+    background-image: url(../../assets/layout-bg-rotated.svg);
+    background-size: cover;
+    background-position: bottom right;
+    background-repeat: no-repeat;
     border-radius: 15px 15px 0 0;
     background-color: #ffffff;
     width: 100%;
     overflow: hidden;
-    height: calc(100vh);
+    height: calc(100svh);
   }
   
   .login-container {
@@ -35,12 +39,7 @@ body {
     flex-grow: 1;
     overflow: hidden;
   }
-  
-  .logo-svg{
-    min-width: 560px;
-    position: fixed;
-    transform: rotate(22.5deg) translateX(60%) translateY(30%);
-  }
+
 
   .login-card {
     padding: 51px;

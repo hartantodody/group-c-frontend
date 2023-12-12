@@ -1,6 +1,5 @@
 import { Layout } from "../../interfaces/interface";
 import "./PublicLayout.css";
-import BackgroundLogo from "../../assets/bg-logo-fade-blue.svg";
 import Typography from "@mui/material/Typography";
 
 const typographyStyle: React.CSSProperties = {
@@ -18,7 +17,6 @@ const PublicLayout = ({ children, titleText }: Layout) => {
         </Typography>
         <div className='login-container'>
           <div className='login-card'>{children}</div>
-          <img src={BackgroundLogo} alt='background' className='logo-svg' />
         </div>
       </div>
     </div>
