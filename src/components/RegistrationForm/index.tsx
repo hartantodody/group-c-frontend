@@ -43,7 +43,6 @@ const RegistrationForm = () => {
     fetchRegister({ username, password, email })
       .then((data) => {
         if (data.success) {
-          navigate("/register-profile");
           Swal.fire({
             icon: "success",
             title: "Registration",
@@ -51,6 +50,7 @@ const RegistrationForm = () => {
             confirmButtonText: "Okay",
             confirmButtonColor: "#005792",
           });
+          navigate("/register-profile");
         } else {
           alert("Invalid data format received from server");
         }
