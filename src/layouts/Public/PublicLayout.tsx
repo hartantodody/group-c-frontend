@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Layout } from "../../interfaces/interface";
+import { PublicLayout } from "../../interfaces/interface";
 import "./PublicLayout.css";
 import Typography from "@mui/material/Typography";
 
@@ -23,7 +23,7 @@ const cardMotion = {
   },
 };
 
-const PublicLayout = ({ children, titleText }: Layout) => {
+const PublicLayout = ({ children, titleText }: PublicLayout) => {
   return (
     <div className='base-layout'>
       <a href='https://helena-development.netlify.app'>

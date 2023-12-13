@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #005792;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .base-layout {
+    display: grid;
+    grid-template-areas:
+      "navbar"
+      "title"
+      "graph"
+      "container";
+    grid-template-rows: auto auto auto 1fr; /* Adjust as needed */
+    min-height: 100vh;
+  }
+  
+  .container {
+    border-radius: 15px 15px 0 0;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: Single column by default */
+    gap: 16px;
+  }
+  
+  
+  /* Media queries for larger screens */
+  @media (min-width: 480px) {
+    .container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+  
