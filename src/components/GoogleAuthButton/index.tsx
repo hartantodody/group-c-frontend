@@ -25,7 +25,7 @@ const StyledButton = styled("button")({
 
 const GoogleAuthButton = ({ buttonText }: ButtonProps) => {
   const handleClick = () => {
-    window.location.href = "https://google.com"; /** << inget ubah ke oauth */
+    window.location.href = "https://group-c-project.onrender.com/v1/auth/google";
   };
 
   return (
