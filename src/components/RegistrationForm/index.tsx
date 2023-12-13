@@ -86,6 +86,9 @@ const RegistrationForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("username")}
           error={formik.touched.username && Boolean(formik.errors.username)}
           helperText={formik.touched.username && formik.errors.username}
@@ -97,6 +100,9 @@ const RegistrationForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("password")}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
@@ -117,6 +123,9 @@ const RegistrationForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("confirmPassword")}
           error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
@@ -140,6 +149,9 @@ const RegistrationForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("email")}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
@@ -149,29 +161,33 @@ const RegistrationForm = () => {
           color='primary'
           variant='contained'
           disabled={isFormEmpty}
-          style={{ width: 114, borderRadius: 15, marginTop: 25 }}
+          style={{ width: 114, borderRadius: 15, marginTop: 25, fontSize: 12 }}
         >
           Sign Up
         </Button>
-        <Box alignItems='center' mt={3}>
-          <Typography variant='body1' color='black' mt={2}>
-            Or continue with :
-          </Typography>
-          <div style={{ marginTop: 15 }}>
-            <GoogleAuthButton buttonText='Sign in' />
-          </div>
-          <div style={{ marginTop: 15, display: "block" }}>
-            <Typography color='black' variant='overline'>
-              Already have an account?
-            </Typography>
-            <Typography color='primary' variant='overline'>
-              <Link to='/login' style={{ textDecoration: "none" }}>
-                Login here.
-              </Link>
-            </Typography>
-          </div>
-        </Box>
       </form>
+      <Box
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        mx='auto'
+        mt={3}
+        textAlign='center'
+      >
+        <Typography variant='body1' color='black' mt={2}>
+          Or continue with :
+        </Typography>
+        <GoogleAuthButton buttonText='Sign up' />
+        <Typography color='black' variant='body1' mt={5}>
+          Already have an account?
+        </Typography>
+        <Typography color='primary' variant='body1' style={{ fontWeight: "bold" }}>
+          <Link to='/signin' style={{ textDecoration: "none", color: "black" }}>
+            Login here.
+          </Link>
+        </Typography>
+      </Box>
     </>
   );
 };

@@ -60,6 +60,9 @@ const RegisterProfileForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("nickname")}
           error={formik.touched.nickname && Boolean(formik.errors.nickname)}
           helperText={formik.touched.nickname && formik.errors.nickname}
@@ -72,6 +75,9 @@ const RegisterProfileForm = () => {
             margin='normal'
             size='small'
             type='number'
+            InputLabelProps={{
+              style: { fontSize: "12px" },
+            }}
             {...formik.getFieldProps("age")}
             error={formik.touched.age && Boolean(formik.errors.age)}
             helperText={formik.touched.age && formik.errors.age}
@@ -96,6 +102,9 @@ const RegisterProfileForm = () => {
             margin='normal'
             size='small'
             type='number'
+            InputLabelProps={{
+              style: { fontSize: "12px" },
+            }}
             {...formik.getFieldProps("height")}
             error={formik.touched.height && Boolean(formik.errors.height)}
             helperText={formik.touched.height && formik.errors.height}
@@ -107,6 +116,9 @@ const RegisterProfileForm = () => {
             margin='normal'
             size='small'
             type='number'
+            InputLabelProps={{
+              style: { fontSize: "12px" },
+            }}
             {...formik.getFieldProps("weight")}
             error={formik.touched.weight && Boolean(formik.errors.weight)}
             helperText={formik.touched.weight && formik.errors.weight}
@@ -124,7 +136,12 @@ const RegisterProfileForm = () => {
             <MenuItem value='active'>Active (Exercise : 5x a week)</MenuItem>
           </Select>
         </FormControl>
-        <Button type='submit' color='primary' variant='contained' style={{ width: 114, borderRadius: 15, margin: 25 }}>
+        <Button
+          type='submit'
+          color='primary'
+          variant='contained'
+          style={{ width: 114, borderRadius: 15, margin: 25, fontSize: 12 }}
+        >
           Submit
         </Button>
       </form>

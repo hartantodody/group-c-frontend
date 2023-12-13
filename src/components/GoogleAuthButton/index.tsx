@@ -16,6 +16,7 @@ const StyledButton = styled("button")({
   boxShadow: "0px 4px 10px -2px rgba(0, 0, 0, 0.5)",
   cursor: "pointer",
   transition: "background-color 0.3s ease-in-out",
+  marginTop: 15,
 
   "&:hover": {
     backgroundColor: "#f0f0f0",
