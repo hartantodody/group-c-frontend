@@ -18,6 +18,22 @@ const theme = createTheme({
     h2: {
       fontFamily: ["Montserrat", "sans-serif"].join(","),
     },
+    h3: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+    },
+    h4: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+    },
+    h5: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+    },
+    h6: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+    },
+    body1: {
+      fontSize: "12px",
+      fontFamily: ["Poppins", "sans-serif"].join(","),
+    },
   },
   palette: {
     primary: {
