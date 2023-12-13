@@ -20,8 +20,16 @@ export interface Profile {
   activeness: string;
 }
 
-export interface Layout {
+export interface PublicLayout {
   children: ReactNode;
+  titleText: string;
+}
+export interface DashboardLayout {
+  caloriesMenu: ReactNode;
+  stepsMenu: ReactNode;
+  waterMenu: ReactNode;
+  sleepMenu: ReactNode;
+  meditationMenu?: ReactNode;
   titleText: string;
 }
 
