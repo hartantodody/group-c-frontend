@@ -46,8 +46,8 @@ const RegistrationForm = () => {
           Swal.fire({
             icon: "success",
             title: "Registration",
-            text: "Registration success!",
-            confirmButtonText: "Okay",
+            text: "Registration success. Please check your email for the verification link!",
+            confirmButtonText: "OK",
             confirmButtonColor: "#005792",
           });
           navigate("/register-profile");
