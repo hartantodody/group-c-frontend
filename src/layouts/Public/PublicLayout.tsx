@@ -27,7 +27,7 @@ const PublicLayout = ({ children, titleText }: Layout) => {
   return (
     <div className='base-layout'>
       <a href='https://helena-development.netlify.app'>
-        <img src='src\assets\logo-white.svg' alt='Logo' className='logo' style={{ width: 284 }} />
+        <img src='public/logo-white.svg' alt='Logo' className='logo' style={{ width: 284, padding: "95px 0 78px 0" }} />
       </a>
       <motion.div className='card' variants={cardMotion} initial='hidden' animate='visible'>
         <Typography variant='h5' style={typographyStyle}>
