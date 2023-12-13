@@ -1,10 +1,10 @@
-import { RegistrationForm } from "../../components";
+import { RegisterProfileForm } from "../../components";
 import PublicLayout from "../../layouts/Public/PublicLayout";
 
 const RegistrationPage = () => {
   return (
     <>
-      <PublicLayout titleText={"Sign Up"} children={RegistrationForm()} />
+      <PublicLayout titleText={"Add Profile"} children={RegisterProfileForm()} />
     </>
   );
 };

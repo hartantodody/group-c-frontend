@@ -11,6 +11,15 @@ export interface Register {
   email: string;
 }
 
+export interface Profile {
+  nickname: string;
+  age: number;
+  gender: string;
+  height: number;
+  weight: number;
+  activeness: string;
+}
+
 export interface Layout {
   children: ReactNode;
   titleText: string;

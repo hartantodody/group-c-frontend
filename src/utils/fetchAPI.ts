@@ -1,5 +1,5 @@
-import { loginUrl, registerUrl } from "./fetchUrl";
-import { Login } from "../interfaces/interface";
+import { loginUrl, registerUrl, registerProfileUrl } from "./fetchUrl";
+import { Login, Profile, Register } from "../interfaces/interface";
 
 export const fetchLogin = async (values: Login) => {
   try {
@@ -10,7 +10,7 @@ export const fetchLogin = async (values: Login) => {
       },
       body: JSON.stringify(values),
     });
-
+    console.log(values);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -18,7 +18,7 @@ export const fetchLogin = async (values: Login) => {
   }
 };
 
-export const fetchRegister = async (values: Login) => {
+export const fetchRegister = async (values: Register) => {
   try {
     const response = await fetch(registerUrl, {
       method: "POST",
@@ -27,7 +27,26 @@ export const fetchRegister = async (values: Login) => {
       },
       body: JSON.stringify(values),
     });
+    console.log(values);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
+export const fetchRegisterProfile = async (values: Profile) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(registerProfileUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(values),
+    });
+    console.log(values);
     const data = await response.json();
     return data;
   } catch (error) {
