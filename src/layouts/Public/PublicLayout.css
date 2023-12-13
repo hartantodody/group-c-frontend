@@ -16,8 +16,9 @@ body {
   }
   
   .logo {
-    height: auto;
+    width: 284px;
     padding: 95px 0 78px 0;
+    cursor: pointer;
   }
 
   .card{
@@ -29,7 +30,7 @@ body {
     background-color: #ffffff;
     width: 100%;
     overflow: hidden;
-    height: calc(100svh);
+    height: calc(100vh);
   }
   
   .login-container {

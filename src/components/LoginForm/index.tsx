@@ -66,6 +66,9 @@ const LoginForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("username")}
           error={formik.touched.username && Boolean(formik.errors.username)}
           helperText={formik.touched.username && formik.errors.username}
@@ -77,6 +80,9 @@ const LoginForm = () => {
           variant='outlined'
           margin='normal'
           size='small'
+          InputLabelProps={{
+            style: { fontSize: "12px" },
+          }}
           {...formik.getFieldProps("password")}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
@@ -95,18 +101,24 @@ const LoginForm = () => {
           color='primary'
           variant='contained'
           disabled={isFormEmpty || isSubmitting}
-          style={{ width: 114, borderRadius: 15, marginTop: 25 }}
+          style={{ width: 114, borderRadius: 15, marginTop: 25, fontSize: 12 }}
         >
           {isSubmitting ? <CircularProgress /> : "Sign In"}
         </Button>
       </form>
-      <Box display='block' alignItems='center' justifyContent='center' mx='auto' mt={3} textAlign='center'>
+      <Box
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        mx='auto'
+        mt={3}
+        textAlign='center'
+      >
         <Typography variant='body1' color='black' mt={2}>
           Or continue with:
         </Typography>
-        <div style={{ marginTop: 15 }}>
-          <GoogleAuthButton buttonText='Sign in' />
-        </div>
+        <GoogleAuthButton buttonText='Sign in' />
         <Typography variant='body1' color='black' mt={5}>
           Doesn't have an account?
         </Typography>
