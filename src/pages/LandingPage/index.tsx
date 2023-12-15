@@ -25,7 +25,7 @@ const LandingPage = () => {
     if (loggedIn) {
       navigate("/");
     } else {
-      navigate("/landing-page");
+      navigate("/home");
     }
   }, [history]);
 

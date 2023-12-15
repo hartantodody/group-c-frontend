@@ -1,6 +1,5 @@
 import "./index.css"
 import image from "../../assets/banner-illustration-01.webp"
-import backImage from "../../assets/banner-background-01.webp"
 import { Button } from "@mui/material";
 import { Navbar } from "..";
 import { useNavigate } from "react-router-dom";
