@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Typography, Box, CircularProgress, Button, LinearProgress, IconButton } from "@mui/material";
+import { Typography, Box, CircularProgress, Button, LinearProgress } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalories } from "../../utils/fetchAPI";
