@@ -7,3 +7,5 @@ const baseUrl = "https://group-c-project.onrender.com";
 export const loginUrl = baseUrl + "/v1/auth/login";
 export const registerUrl = baseUrl + "/v1/auth/register";
 export const registerProfileUrl = baseUrl + "/v1/profile";
+export const caloriesUrl = baseUrl + "/v1/calories";
+export const foodConsumedUrl = baseUrl + "/v1/consume";

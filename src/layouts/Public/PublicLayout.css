@@ -20,7 +20,7 @@ body {
   }
 
   .card{
-    background-image: url(public/layout-bg-rotated.svg);
+    background-image: url(layout-bg-rotated.svg);
     background-size: 526px;
     background-position: bottom right;
     background-repeat: no-repeat;

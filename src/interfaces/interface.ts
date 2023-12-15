@@ -20,19 +20,31 @@ export interface Profile {
   activeness: string;
 }
 
-export interface PublicLayout {
+export interface PublicLayoutProps {
   children: ReactNode;
   titleText: string;
 }
-export interface DashboardLayout {
-  caloriesMenu: ReactNode;
-  stepsMenu: ReactNode;
-  waterMenu: ReactNode;
-  sleepMenu: ReactNode;
+export interface DashboardLayoutProps {
+  chartMenu?: ReactNode;
+  caloriesMenu?: ReactNode;
+  stepsMenu?: ReactNode;
+  waterMenu?: ReactNode;
+  sleepMenu?: ReactNode;
   meditationMenu?: ReactNode;
-  titleText: string;
+  titleText?: string;
 }
 
 export interface ButtonProps {
   buttonText: string;
+}
+
+export interface CaloriesProps {
+  target: number;
+  calories: number;
+}
+
+export interface FoodItem {
+  id: number;
+  foodName: string;
+  calories: number;
 }

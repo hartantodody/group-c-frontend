@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -19,37 +20,67 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-    const navigate = useNavigate();
-    
-    const navigateToRegister = () => {
-        navigate("/signup");
-    };
+  const navigate = useNavigate();
 
-    const navigateToLogin = () => {
-        navigate("/signin");
-    };
+  const navigateToRegister = () => {
+    navigate("/signup");
+  };
+
+  const navigateToLogin = () => {
+    navigate("/signin");
+  };
 
   return (
     <>
-      <div className="navbar-container">
-        <img className="logo" src={mainLogo} alt="Helena Main Logo" />
+      <motion.div
+        className='navbar-container'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <IconButton onClick={toggleMenu}>
           <MenuIcon />
         </IconButton>
 
         {/* Drawer for the menu */}
-        <Drawer anchor="top" open={isMenuOpen} onClose={toggleMenu}>
-            <div className="menu-content">
-                <IconButton className="close-button" onClick={closeMenu}>
-                    <CloseIcon />
-                </IconButton>
-                <div className="content-inmenu">
-                    <Button className="signup-button" variant="contained" onClick={navigateToRegister}>Sign Up</Button>
-                    <Button className="signin-button" variant="contained" onClick={navigateToLogin}>Sign In</Button>
-                </div>
+        <Drawer anchor='left' open={isMenuOpen} onClose={toggleMenu}>
+          <motion.div
+            className='menu-content'
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -200, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <IconButton className='close-button' onClick={closeMenu}>
+              <CloseIcon />
+            </IconButton>
+            <div className='content-inmenu'>
+              <Button className='signup-button' variant='contained' onClick={navigateToRegister}>
+                Sign Up
+              </Button>
+              <Button
+                className='signin-button'
+                variant='contained'
+                onClick={navigateToLogin}
+                style={{ backgroundColor: "white", borderColor: "#005792", color: "#005792" }}
+              >
+                Sign In
+              </Button>
             </div>
+          </motion.div>
         </Drawer>
-      </div>
+
+        <motion.img
+          className='logo'
+          src={mainLogo}
+          alt='Helena Main Logo'
+          initial={{ x: -200, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -200, opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+      </motion.div>
     </>
   );
 };
