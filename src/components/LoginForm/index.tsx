@@ -32,7 +32,7 @@ const LoginForm = () => {
         if (data && data.token) {
           localStorage.setItem("token", data.token);
           setSubmitting(false);
-          navigate("/dashboard");
+          navigate("/");
         } else {
           alert("Invalid data format received from server");
           setSubmitting(false);

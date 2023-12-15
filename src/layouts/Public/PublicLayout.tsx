@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { PublicLayout } from "../../interfaces/interface";
+import { PublicLayoutProps } from "../../interfaces/interface";
 import "./PublicLayout.css";
 import Typography from "@mui/material/Typography";
 
@@ -23,11 +23,11 @@ const cardMotion = {
   },
 };
 
-const PublicLayout = ({ children, titleText }: PublicLayout) => {
+const PublicLayout = ({ children, titleText }: PublicLayoutProps) => {
   return (
     <div className='base-layout'>
       <a href='https://helena-development.netlify.app'>
-        <img src='public/logo-white.svg' alt='Logo' className='logo' style={{ width: 284, padding: "95px 0 78px 0" }} />
+        <img src='logo-white.svg' alt='Logo' className='logo' style={{ width: 284, padding: "95px 0 78px 0" }} />
       </a>
       <motion.div className='card' variants={cardMotion} initial='hidden' animate='visible'>
         <Typography variant='h5' style={typographyStyle}>

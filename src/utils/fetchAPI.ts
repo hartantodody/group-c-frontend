@@ -1,4 +1,4 @@
-import { loginUrl, registerUrl, registerProfileUrl } from "./fetchUrl";
+import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl } from "./fetchUrl";
 import { Login, Profile, Register } from "../interfaces/interface";
 
 export const fetchLogin = async (values: Login) => {
@@ -47,6 +47,40 @@ export const fetchRegisterProfile = async (values: Profile) => {
       body: JSON.stringify(values),
     });
     console.log(values);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchCalories = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(caloriesUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchFoodList = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(caloriesUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
     return data;
   } catch (error) {
