@@ -16,14 +16,12 @@ body {
   }
   
   .logo {
-    width: 284px;
-    padding: 95px 0 78px 0;
     cursor: pointer;
   }
 
   .card{
-    background-image: url(../../assets/layout-bg-rotated.svg);
-    background-size: cover;
+    background-image: url(public/layout-bg-rotated.svg);
+    background-size: 526px;
     background-position: bottom right;
     background-repeat: no-repeat;
     border-radius: 15px 15px 0 0;
