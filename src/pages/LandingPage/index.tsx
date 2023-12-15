@@ -8,12 +8,10 @@ const LandingPage = () => {
 
     return (
         <>
-            <div>
-                <Banner/>
-                <AboutUs/>
-                <Feature/>
-                <Footer/>
-            </div>
+            <Banner/>
+            <AboutUs/>
+            <Feature/>
+            <Footer/>
         </>
     )
   };

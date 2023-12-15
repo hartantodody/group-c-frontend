@@ -3,3 +3,7 @@ export { default as KeyFeature } from "./KeyFeature";
 export { default as RegistrationForm } from "./RegistrationForm";
 export { default as RegisterProfileForm } from "./RegisterProfileForm";
 export { default as GoogleAuthButton } from "./GoogleAuthButton";
+export { default as UserProfile } from "./UserProfile";
+export { default as NavbarWhite } from "./NavbarWhite";
+export { default as LogoutButton } from "./LogoutButton";
+export { default as EditProfileButton } from "./EditProfileButton";
