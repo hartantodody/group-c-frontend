@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage } from "./pages";
+import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage } from "./pages";
 
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
           <Route path='/signin' element={<LoginPage />} />
           <Route path='/signup' element={<RegistrationPage />} />
           <Route path='/register-profile' element={<RegisterProfilePage />} />
-          <Route path='/' element={<LandingPage />} />
+          <Route path='/user-profile' element={<ProfilePage />} />
+          <Route path='/home' element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
     </>
