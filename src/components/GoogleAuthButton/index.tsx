@@ -30,7 +30,7 @@ const GoogleAuthButton = ({ buttonText }: ButtonProps) => {
 
   return (
     <StyledButton onClick={handleClick}>
-      <img src='src/assets/GoogleLogo.svg' alt='Google Logo' />
+      <img src='GoogleLogo.svg' alt='Google Logo' />
       {buttonText} with Google
     </StyledButton>
   );

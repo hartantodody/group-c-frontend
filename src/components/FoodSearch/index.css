@@ -1,0 +1,21 @@
+.food-consumed-container{
+    margin-top: 10px;
+    padding: 10px;
+    background-image: url(layout-bg-rotated.svg);
+    background-size: 526px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    background-color: #EDF9FC;
+    overflow: hidden;
+}
+
+.search-list-container {
+    border: 1px solid #000000;
+  }
+  
+  .search-list-item:hover {
+    background-color: #EDF9FC;
+    cursor: pointer;
+  }
+  
