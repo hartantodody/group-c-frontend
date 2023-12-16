@@ -1,7 +1,9 @@
+/* eslint-disable no-useless-catch */
 import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl } from "./fetchUrl";
 import { Login, Profile, Register } from "../interfaces/interface";
 
 export const fetchLogin = async (values: Login) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(loginUrl, {
       method: "POST",
@@ -13,12 +15,14 @@ export const fetchLogin = async (values: Login) => {
     console.log(values);
     const data = await response.json();
     return data;
+  
   } catch (error) {
     throw error;
   }
 };
 
 export const fetchRegister = async (values: Register) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(registerUrl, {
       method: "POST",
@@ -36,6 +40,7 @@ export const fetchRegister = async (values: Register) => {
 };
 
 export const fetchRegisterProfile = async (values: Profile) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(registerProfileUrl, {

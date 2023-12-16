@@ -4,7 +4,6 @@ const AboutUs = () => {
   return (
     <>
       <div className="background-about">
-        <div className="container">
           <h2 className="header">About Us</h2>
           <p className="paragraph">
             Meet Helena, your all-in-one wellness companion. Seamlessly track
@@ -14,7 +13,8 @@ const AboutUs = () => {
             activity, calm moments, and overall well-being. Join us for attainable
             and enjoyable health goals.
           </p>
-        </div>
+        {/* <div className="container">
+        </div> */}
       </div>
     </>
   );

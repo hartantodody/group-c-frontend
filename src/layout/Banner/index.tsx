@@ -12,8 +12,7 @@ const Banner = () => {
     };
 
     return (
-        <>
-            
+        <>            
             <div className="background-banner">
                 <div className="banner-container">
                     <Navbar/>

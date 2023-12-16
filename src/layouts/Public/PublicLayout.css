@@ -6,8 +6,10 @@
 
 body {
     margin: 0;
+    padding: 0 !important;
     background-color: #005792;
     text-align: center;
+    width: 100svw;
     height: 100svh;
   }
 

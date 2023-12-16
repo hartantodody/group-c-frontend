@@ -27,7 +27,7 @@ const LandingPage = () => {
     } else {
       navigate("/home");
     }
-  }, [history]);
+  }, [navigate]);
 
   return (
     <>
