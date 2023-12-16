@@ -1,5 +1,5 @@
 import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl } from "./fetchUrl";
-import { FoodItem, Login, Profile, Register } from "../interfaces/interface";
+import { Login, Profile, Register } from "../interfaces/interface";
 
 export const fetchLogin = async (values: Login) => {
   try {
