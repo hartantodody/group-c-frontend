@@ -1,0 +1,53 @@
+/* Base styles for larger screens */
+.profile-container {
+    position: relative;
+    height: 100vh;
+    background-image: url(../../assets/ProfilePageAssets/profile-back-img.svg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.profile-image {
+    max-width: 100px;
+    min-width: 70px;
+}
+
+.profile-name {
+    color: #ffffff;
+}
+
+.card {
+    position: absolute;
+    background-image: url(../../assets/layout-bg-rotated.svg);
+    background-size: cover;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    background-color: #ffffff;
+    width: 100%;
+    bottom: 0;
+    overflow-y: auto; /* Make the card scrollable on overflow */
+    max-height: 75%;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .profile-image {
+        max-width: 100px;
+        min-width: 80px;
+    }
+
+    .card {
+        max-height: 70%;
+        overflow-y: auto; /* Make the card scrollable on overflow */
+    }
+}
+
+/* Media query for even smaller screens */
+@media screen and (max-width: 480px) {
+    .profile-image {
+        max-width: 100px;
+        min-width: 100px;
+    }
+}
