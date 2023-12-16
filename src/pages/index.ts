@@ -4,3 +4,4 @@ export { default as RegistrationPage } from "./RegistrationPage";
 export { default as RegisterProfilePage } from "./RegisterProfilePage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as DashboardPage } from "./DashboardPage";
+export { default as AddFoodConsumedPage } from "./AddFoodConsumedPage";
