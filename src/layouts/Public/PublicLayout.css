@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #005792;
+    text-align: center;
+    height: 100svh;
+  }
+
+  .base-layout {
+    height: 100%;
+  }
+  
+  .logo {
+    cursor: pointer;
+  }
+
+  .card{
+    background-image: url(layout-bg-rotated.svg);
+    background-size: 526px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    background-color: #ffffff;
+    width: 100%;
+    overflow: hidden;
+    height: calc(100vh);
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+
+  .login-card {
+    padding: 51px;
+  }

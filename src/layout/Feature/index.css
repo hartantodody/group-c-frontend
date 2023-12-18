@@ -1,0 +1,8 @@
+.feature-container {
+    display: flex;
+    width: 100%;
+    min-height: 483px;
+    flex-direction: column;
+    background-color: white;
+    padding-top: 20px;
+}
