@@ -71,7 +71,7 @@ export const fetchCalories = async () => {
   }
 };
 
-export const fetchFoodList = async () => {
+export const fetchFoodConsumed = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(caloriesUrl, {
@@ -81,6 +81,26 @@ export const fetchFoodList = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchAddFoodConsumed = async (foodNames: string[]) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(caloriesUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ foodNames }),
+    });
+    console.log({ foodNames });
+
     const data = await response.json();
     return data;
   } catch (error) {

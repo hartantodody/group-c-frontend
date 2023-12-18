@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Typography, Box, CircularProgress, Button, LinearProgress } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalories } from "../../utils/fetchAPI";
 
@@ -12,6 +13,7 @@ type CalorieData = {
 };
 
 const CaloriesMenu = () => {
+  const navigate = useNavigate();
   const [calories, setCalories] = useState<CalorieData[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
@@ -43,7 +45,7 @@ const CaloriesMenu = () => {
   };
 
   const handleAddFood = () => {
-    console.log("test");
+    navigate("/add-food");
   };
 
   const calculateProgress = () => {
