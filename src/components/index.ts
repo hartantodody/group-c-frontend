@@ -11,3 +11,4 @@ export { default as NavbarWhite } from "./NavbarWhite";
 export { default as LogoutButton } from "./LogoutButton";
 export { default as EditProfileButton } from "./EditProfileButton";
 export { default as EmailSendForm } from "./EmailSendForm";
+export { default as ResetPasswordForm } from "./ResetPasswordForm";
