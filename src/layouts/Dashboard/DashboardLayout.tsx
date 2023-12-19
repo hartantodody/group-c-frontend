@@ -1,4 +1,4 @@
-import { Typography, Box, Paper } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
