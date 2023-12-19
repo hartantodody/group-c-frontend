@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage, DashboardPage, AddFoodConsumedPage, EmailSendPage } from "./pages";
+import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage, DashboardPage, AddFoodConsumedPage, EmailSendPage, ResetPasswordPage } from "./pages";
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
           <Route path='/add-food' element={<AddFoodConsumedPage />} />
           <Route path='/user-profile' element={<ProfilePage />} />
           <Route path='/home' element={<LandingPage />} />
-          <Route path='/reset-password/reset-request' element={<EmailSendPage />} />
+          <Route path='/reset-request' element={<EmailSendPage />} />
+          <Route path='/reset-password/:token/:userId' element={<ResetPasswordPage />} />
         </Routes>
       </BrowserRouter>
     </>
