@@ -19,14 +19,16 @@ const ShowFoodConsumed: React.FC = () => {
         setConsumedFoodData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setConsumedFoodData([]); // Set an empty array or handle error state accordingly
+        setConsumedFoodData([]);
       }
     };
 
     fetchData();
   }, []);
 
-  const titleCase = (str: string) => {
+  const titleCase = (str: string | undefined) => {
+    if (!str) return "";
+
     return str
       .toLowerCase()
       .split(" ")
@@ -34,7 +36,6 @@ const ShowFoodConsumed: React.FC = () => {
       .join(" ");
   };
 
-  // Check if consumedFoodData is not an array
   if (!Array.isArray(consumedFoodData)) {
     return <div>No data available</div>;
   }
