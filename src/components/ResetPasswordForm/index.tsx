@@ -2,8 +2,12 @@ import { Button, TextField, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import { useParams } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
+  // Extract token and userId from URL parameters
+  const { token, userId } = useParams<{ token: string; userId: string }>();
+
   const validationSchema = Yup.object({
     password: Yup.string()
       .required("Password is required")
@@ -18,12 +22,22 @@ const ResetPasswordForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
+        // Convert userId to a number if needed
+        const userIdAsNumber = Number(userId);
+
+        // Add token and userId to the request body
+        const requestBody = {
+          password: values.password,
+          token: token,
+          userId: userIdAsNumber,
+        };
+
         await fetch("https://group-c-project.onrender.com/v1/reset", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ password: values.password }),
+          body: JSON.stringify(requestBody),
         });
 
         Swal.fire({
@@ -34,13 +48,7 @@ const ResetPasswordForm = () => {
           confirmButtonColor: "#005792",
         });
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Error in main code:", error.message);
-          alert(`Error in main code: ${error.message}`);
-        } else {
-          console.error("Unexpected error:", error);
-          alert("Unexpected error occurred");
-        }
+        // Handle errors
       }
     },
   });

@@ -15,8 +15,8 @@ function App() {
           <Route path='/add-food' element={<AddFoodConsumedPage />} />
           <Route path='/user-profile' element={<ProfilePage />} />
           <Route path='/home' element={<LandingPage />} />
-          <Route path='/reset-password/reset-request' element={<EmailSendPage />} />
-          <Route path='/reset-password/reset' element={<ResetPasswordPage />} />
+          <Route path='/reset-request' element={<EmailSendPage />} />
+          <Route path='/reset-password/:token/:userId' element={<ResetPasswordPage />} />
         </Routes>
       </BrowserRouter>
     </>
