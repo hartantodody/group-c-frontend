@@ -51,8 +51,12 @@ const WaterMenu: React.FC = () => {
 
       await fetchAddWaterIntake({ waterActual: totalIntake });
 
+      const response = await fetchWaterIntake();
+      const updatedData = response.data.waterActual as number;
+
+      setTodaysIntake(updatedData);
       setUserInput(0);
-      console.log({ waterActual: totalIntake });
+      console.log({ waterActual: updatedData });
     } catch (error: any) {
       console.error("Error submitting water intake:", error);
     } finally {
@@ -65,7 +69,7 @@ const WaterMenu: React.FC = () => {
       <Typography variant='h5'>Water Intake</Typography>
       <Collapse in={!collapsed}>
         <div>
-          <Typography variant='h6' color={"white"}>
+          <Typography variant='h4' color='primary'>
             {userInput === 0 ? "No Glasses" : `${userInput} ${userInput === 1 ? "Glass" : "Glasses"}`}
           </Typography>
           <Typography>Target Intake: 8 glasses</Typography>
