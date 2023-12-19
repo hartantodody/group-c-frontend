@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-catch */
-import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl } from "./fetchUrl";
 import { Meditation, Water, Login, Profile, Register } from "./../interfaces/interface";
 import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl, waterUrl, meditationUrl } from "./fetchUrl";
 
@@ -16,7 +14,6 @@ export const fetchLogin = async (values: Login) => {
     console.log(values);
     const data = await response.json();
     return data;
-  
   } catch (error) {
     throw error;
   }
