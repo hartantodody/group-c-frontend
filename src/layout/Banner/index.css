@@ -27,9 +27,12 @@
     margin-bottom: 25px;
 }
 
+.image-container {
+    overflow: hidden;
+}
+
 .image {
-    width: 380px;
-    
+    width: 360px;
 }
 
 .banner-title {
@@ -50,5 +53,21 @@
     font-family: 'Poppins' !important;
     font-weight: 700 !important;
     text-transform: none !important;
-    width: 290px;
+    width: 280px;
 }
+
+@media (max-width: 380px) {
+    .image {
+        width: 320px;
+    }
+    .banner-title {
+        font-size: 14px;
+    }
+    .banner-button{
+        font-size: 12px !important;
+        width: 270px;
+    }
+}
+
+
+

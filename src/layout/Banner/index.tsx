@@ -12,8 +12,7 @@ const Banner = () => {
     };
 
     return (
-        <>
-            
+        <>            
             <div className="background-banner">
                 <div className="banner-container">
                     <Navbar/>
@@ -22,10 +21,10 @@ const Banner = () => {
                             <p className="tag-title">Elevate Your Well-being:</p>
                             <p>Navigating Health, One Click at a Time!</p>
                         </div>
-                        <div >
+                        <div className="image-container">
                             <img className="image" src={image} alt="" />
                         </div>
-                        <Button className="banner-button" variant="contained" onClick={navigateToRegister}>Start Your Wellness Journey {'>>>'}</Button>
+                        <Button className="banner-button" variant="contained" onClick={navigateToRegister}>Start Your Wellness Journey&ensp;{'>>>'}</Button>
                     </div>
                 </div>
             </div>
