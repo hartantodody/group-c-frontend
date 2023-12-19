@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
@@ -22,11 +22,21 @@ const DashboardLayout = ({
       <TodayDate />
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
-        <div className='dashboard-card'>{caloriesMenu}</div>
-        <div className='dashboard-card'>{waterMenu}</div>
-        <div className='dashboard-card'>{sleepMenu}</div>
-        <div className='dashboard-card'>{stepsMenu}</div>
-        <div className='dashboard-card'>{meditationMenu}</div>
+        <Paper elevation={5} sx={{ padding: 5, borderRadius: 5 }}>
+          {caloriesMenu}
+        </Paper>
+        <Paper elevation={5} sx={{ padding: 5, borderRadius: 5 }}>
+          {waterMenu}
+        </Paper>
+        <Paper elevation={5} sx={{ padding: 5, borderRadius: 5 }}>
+          {sleepMenu}
+        </Paper>
+        <Paper elevation={5} sx={{ padding: 5, borderRadius: 5 }}>
+          {stepsMenu}
+        </Paper>
+        <Paper elevation={5} sx={{ padding: 5, borderRadius: 5 }}>
+          {meditationMenu}
+        </Paper>
       </div>
     </div>
   );

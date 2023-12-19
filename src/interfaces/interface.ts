@@ -60,3 +60,7 @@ export interface Meditation {
   meditationActual: number;
   target?: number;
 }
+
+export interface WaterBottleProps {
+  maxCapacity: number;
+}

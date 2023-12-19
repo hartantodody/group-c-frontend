@@ -39,10 +39,11 @@ padding: 15px
 }
 
 .dashboard-card{
-  color: #ffffff;
+  color: #005792;
   padding: 15px;
-  background-color: #005792;
+  background-color: whitesmoke;
   border-radius: 15px;
+  border: solid 1px rgb(211, 211, 211);
 }
   
   /* Media queries for larger screens */
