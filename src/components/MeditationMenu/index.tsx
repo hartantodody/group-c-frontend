@@ -91,15 +91,12 @@ const MeditationMenu: React.FC = () => {
 
   return (
     <div>
-      <Button variant='text' color='primary' onClick={handleToggleCollapse}>
-        {collapsed ? "Expand" : "Collapse"}
-      </Button>
-      <Typography variant='body1' color={"white"}>
-        Yesterday's meditation time: {todaysMeditation} minutes
-      </Typography>
+      <Typography variant='h6'>Meditation</Typography>
       <Collapse in={!collapsed}>
         <div>
-          <Typography variant='h6'>Meditation</Typography>
+          <Typography variant='body1' color='primary'>
+            Yesterday's meditation time: {todaysMeditation} minutes
+          </Typography>
           <Typography>Minutes Remaining: {minutesMeditated} minutes</Typography>
           <Button variant='contained' color='primary' onClick={handleStart} disabled={buttonDisabled}>
             Start
@@ -115,6 +112,9 @@ const MeditationMenu: React.FC = () => {
           </Button>
         </div>
       </Collapse>
+      <Button variant='contained' color='primary' onClick={handleToggleCollapse}>
+        {collapsed ? "Expand" : "Collapse"}
+      </Button>
     </div>
   );
 };
