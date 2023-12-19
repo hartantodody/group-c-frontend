@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Typography, Box, CircularProgress, Button, LinearProgress, IconButton } from "@mui/material";
+import { Typography, Box, CircularProgress, Button, LinearProgress } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalories } from "../../utils/fetchAPI";
+import { ShowFoodConsumed } from "..";
 
 type CalorieData = {
   actual: number;
@@ -12,6 +14,7 @@ type CalorieData = {
 };
 
 const CaloriesMenu = () => {
+  const navigate = useNavigate();
   const [calories, setCalories] = useState<CalorieData[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
@@ -43,7 +46,7 @@ const CaloriesMenu = () => {
   };
 
   const handleAddFood = () => {
-    console.log("test");
+    navigate("/add-food");
   };
 
   const calculateProgress = () => {
@@ -89,6 +92,7 @@ const CaloriesMenu = () => {
                 <Button variant='contained' size='small' color='success' onClick={handleAddFood}>
                   <AddIcon /> <img src='/eat-food-healthy-life-svgrepo-com.svg' alt='healthy-food-icon' />
                 </Button>
+                <ShowFoodConsumed />
               </>
             )}
           </motion.div>

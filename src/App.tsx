@@ -1,8 +1,6 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage, DashboardPage } from "./pages";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage, DashboardPage, AddFoodConsumedPage, EmailSendPage } from "./pages";
 
 function App() {
   return (
@@ -14,8 +12,10 @@ function App() {
           <Route path='/signup' element={<RegistrationPage />} />
           <Route path='/register-profile' element={<RegisterProfilePage />} />
           <Route path='/landing-page' element={<LandingPage />} />
+          <Route path='/add-food' element={<AddFoodConsumedPage />} />
           <Route path='/user-profile' element={<ProfilePage />} />
-          <Route path='/home' element={<LandingPage/>} />
+          <Route path='/home' element={<LandingPage />} />
+          <Route path='/reset-password/reset-request' element={<EmailSendPage />} />
         </Routes>
       </BrowserRouter>
     </>
