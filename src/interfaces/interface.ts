@@ -61,6 +61,8 @@ export interface Meditation {
   target?: number;
 }
 
-export interface WaterBottleProps {
-  maxCapacity: number;
+export interface Sleep {
+  sleepStart: string;
+  sleepEnd: string
+  target?: number;
 }

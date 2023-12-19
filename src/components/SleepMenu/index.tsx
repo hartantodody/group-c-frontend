@@ -3,20 +3,35 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider, MobileDateTimePicker } from "@mui/x-date-pickers";
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
-import addDays from "date-fns/addDays";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import { format } from "date-fns";
+import { fetchAddSleep } from "../../utils/fetchAPI";
 
-interface SleepMenuProps {
-  sleepStartProp?: string;
-  wakeUpProp?: string;
-}
 
-const SleepMenu: React.FC<SleepMenuProps> = () => {
+const SleepMenu: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
   const [sleepStart, setSleepStart] = useState<Date | null>(null);
   const [sleepEnd, setSleepEnd] = useState<Date | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleSubmit = async () => {
+    setLoading(true)
+    try {
+      const formattedSleepStart = sleepStart ? format(sleepStart, "yyyy-MM-dd hh:mm") : "";
+      const formattedSleepEnd = sleepEnd ? format(sleepEnd, "yyyy-MM-dd hh:mm") : "";
+      const newSleep = {
+        sleepStart: formattedSleepStart,
+        sleepEnd: formattedSleepEnd
+      }
+    await fetchAddSleep(newSleep)
+    } catch (error) {
+      console.error("Error submitting water intake:", error);
+    } finally {
+      setLoading(false);
+    }
+  } 
 
   const handleDatePickerSleepStart = (date: Date | null) => {
     setSleepStart(date);
@@ -63,7 +78,8 @@ const SleepMenu: React.FC<SleepMenuProps> = () => {
                 <Button
                   variant='outlined'
                   color='secondary'
-                  onClick={() => setSleepStart((prevDate) => addDays(prevDate || new Date(), 1))}
+                  disabled={loading}
+                  onClick={handleSubmit}
                 >
                   submit
                 </Button>
@@ -72,7 +88,7 @@ const SleepMenu: React.FC<SleepMenuProps> = () => {
           )}          
         </AnimatePresence>
       </div>
-      <Box style={{ marginTop: 5 }}>
+      <Box style={{ marginTop: 20 }}>
         <Button onClick={handleExpandClick} variant='outlined' color='secondary'>
           {expanded ? "Collapse" : "Expand"}
         </Button>
