@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalories } from "../../utils/fetchAPI";
+import { ShowFoodConsumed } from "..";
 
 type CalorieData = {
   actual: number;
@@ -91,6 +92,7 @@ const CaloriesMenu = () => {
                 <Button variant='contained' size='small' color='success' onClick={handleAddFood}>
                   <AddIcon /> <img src='/eat-food-healthy-life-svgrepo-com.svg' alt='healthy-food-icon' />
                 </Button>
+                <ShowFoodConsumed />
               </>
             )}
           </motion.div>

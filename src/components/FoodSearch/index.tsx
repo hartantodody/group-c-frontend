@@ -62,10 +62,13 @@ const FoodSearch: React.FC = () => {
       const foodNames = selectedFoods.map((food) => food.foodName);
 
       const response = await fetchAddFoodConsumed(foodNames);
-      const data = await response.json();
+      console.log("Response:", response);
+
+      const responseData = await response.text();
+      console.log("Response Content:", responseData);
 
       if (!response.ok) {
-        alert(`Error: ${data.message || "Something went wrong."}`);
+        alert(`Error: ${responseData.message}`);
         return;
       }
 
