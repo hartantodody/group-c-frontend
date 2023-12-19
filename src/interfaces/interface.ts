@@ -45,10 +45,10 @@ export interface CaloriesProps {
 
 export interface FoodItem {
   id: number;
-  uniqueId: string;
-  foodName: string;
-  calories: number;
-  timeConsumed: string;
+  uniqueId?: string;
+  foodName?: string;
+  calories?: number;
+  timeConsumed?: string;
 }
 
 export interface Water {
