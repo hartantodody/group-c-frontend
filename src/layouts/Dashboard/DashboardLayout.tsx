@@ -17,7 +17,12 @@ const DashboardLayout = ({
     borderRadius: 5,
     minHeight: 150,
     minWidth: 300,
+    backgroundImage: "url(layout-bg-rotated.svg)",
+    backgroundSize: 250,
+    backgroundPosition: "bottom right",
+    backgroundRepeat: "no-repeat",
   };
+
   return (
     <div className='base-layout'>
       <Navbar />
