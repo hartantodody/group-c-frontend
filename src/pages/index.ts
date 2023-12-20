@@ -7,3 +7,7 @@ export { default as DashboardPage } from "./DashboardPage";
 export { default as EmailSendPage } from "./EmailSendPage";
 export { default as AddFoodConsumedPage } from "./AddFoodConsumedPage";
 export { default as ResetPasswordPage } from "./ResetPasswordPage";
+export { default as ResendVerifyPage } from "./VerifyResendPage";
+export { default as VerificationSuccessPage } from "./VerificationSuccessPage";
+export { default as FailedVerifyPage } from "./FailedVerifyPage";
+export { default as EditProfilePage } from "./EditProfilePage";
