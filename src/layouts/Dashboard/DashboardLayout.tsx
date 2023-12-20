@@ -3,6 +3,7 @@ import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
 import { TodayDate } from "../../components";
+import { Weather } from "../../components"
 
 const DashboardLayout = ({
   chartMenu,
@@ -31,6 +32,7 @@ const DashboardLayout = ({
         Hi, {/* tambahin nama user pake use context*/}!
       </Typography>
       <TodayDate />
+      <Weather />
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
         <Paper elevation={5} sx={cardStyles}>
