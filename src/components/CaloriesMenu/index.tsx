@@ -51,7 +51,7 @@ const CaloriesMenu = () => {
 
   return (
     <>
-      <Typography variant='h5'>Daily Calories</Typography>
+      <Typography variant='h6'>Daily Calories</Typography>
       <AnimatePresence>
         {expanded && (
           <motion.div

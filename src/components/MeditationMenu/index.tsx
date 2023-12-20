@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import StopIcon from "@mui/icons-material/Stop";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { fetcAddhMeditation } from "../../utils/fetchAPI";
 import { fetchMeditation } from "../../utils/fetchAPI";
 import Swal from "sweetalert2";
+import "./index.css";
 
 const MeditationMenu: React.FC = () => {
   const [totalSeconds, setTotalSeconds] = useState<number>(0);
@@ -30,10 +36,18 @@ const MeditationMenu: React.FC = () => {
       try {
         const response = await fetchMeditation();
         const data = response.data.meditationActual;
+        if (data === null) {
+          Swal.fire({
+            icon: "error",
+            title: "Error Fetching Meditation Data",
+            text: "There was an error fetching today's meditation data. Please try again later.",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#005792",
+          });
+        }
         setTodaysMeditation(data);
-        console.log(data);
       } catch (error) {
-        console.error("Error fetching yesterday's meditation:", error);
+        console.error("Error fetching today's meditation:", error);
       }
     };
 
@@ -86,39 +100,53 @@ const MeditationMenu: React.FC = () => {
     } catch (error) {
       alert("Error: " + error);
     }
+
+    fetchMeditation();
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins} minutes ${secs} seconds`;
+    return `${mins} min ${secs} sec`;
   };
 
   return (
     <div>
-      <Typography variant='h6'>Meditation</Typography>
+      <img src='/public/meditation-icon.svg' alt='meditation logo' />
+      <Typography variant='h6' style={{ marginBottom: 10 }}>
+        Meditation
+      </Typography>
       <Collapse in={!collapsed}>
         <div>
           <Typography variant='body1' color='primary'>
-            Yesterday's meditation time: {todaysMeditation} minutes
+            Total meditation time today : <span style={{ fontWeight: 700 }}>{todaysMeditation} minutes</span>
           </Typography>
-          <Typography>Time spent: {formatTime(totalSeconds)}</Typography>
-          <Button variant='contained' color='primary' onClick={handleStart} disabled={buttonDisabled}>
-            Start
+          <Typography>
+            Time elapsed: <span style={{ fontWeight: 700 }}>{formatTime(totalSeconds)}</span>
+          </Typography>
+          <Button
+            variant='outlined'
+            color='primary'
+            onClick={handleStart}
+            disabled={buttonDisabled}
+            className='small-button'
+          >
+            <PlayArrowIcon className='small-icon' />
           </Button>
-          <Button variant='contained' color='error' onClick={handleStop}>
-            Stop
+          <Button variant='outlined' color='error' onClick={handleStop} className='small-button'>
+            <StopIcon className='small-icon' />
           </Button>
-          <Button variant='contained' color='secondary' onClick={handleReset}>
-            Reset
+          <Button variant='outlined' color='secondary' onClick={handleReset} className='small-button'>
+            <RotateLeftIcon className='small-icon' />
           </Button>
-          <Button variant='contained' color='primary' onClick={handleAddMeditation}>
-            Submit
+          <br />
+          <Button variant='contained' color='primary' onClick={handleAddMeditation} size='small' style={{ margin: 10 }}>
+            <Typography variant='body1'>Submit</Typography>
           </Button>
         </div>
       </Collapse>
-      <Button variant='contained' color='primary' onClick={handleToggleCollapse}>
-        {collapsed ? "Expand" : "Collapse"}
+      <Button variant='outlined' color='primary' onClick={handleToggleCollapse} className='small-button'>
+        {collapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
       </Button>
     </div>
   );
