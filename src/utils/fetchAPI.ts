@@ -220,3 +220,28 @@ export const fetchAddSleep = async ({sleepStart, sleepEnd}:Sleep) => {
     throw error;
   }
 };
+
+export const fetchGetSleep = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(sleepUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to get sleep");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchGetSleep:", error);
+    throw error;
+  }
+};

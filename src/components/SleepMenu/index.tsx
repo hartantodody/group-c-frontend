@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -7,7 +7,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { format } from "date-fns";
-import { fetchAddSleep } from "../../utils/fetchAPI";
+import { fetchAddSleep, fetchGetSleep } from "../../utils/fetchAPI";
+import  ProgressBarComponent  from "../ProgressBar";
 
 
 const SleepMenu: React.FC = () => {
@@ -15,12 +16,14 @@ const SleepMenu: React.FC = () => {
   const [sleepStart, setSleepStart] = useState<Date | null>(null);
   const [sleepEnd, setSleepEnd] = useState<Date | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [progressValue, setProgressValue] = useState<number>(0);
+ 
 
   const handleSubmit = async () => {
     setLoading(true)
     try {
-      const formattedSleepStart = sleepStart ? format(sleepStart, "yyyy-MM-dd hh:mm") : "";
-      const formattedSleepEnd = sleepEnd ? format(sleepEnd, "yyyy-MM-dd hh:mm") : "";
+      const formattedSleepStart = sleepStart ? format(sleepStart, "yyyy-MM-dd HH:mm") : "";
+      const formattedSleepEnd = sleepEnd ? format(sleepEnd, "yyyy-MM-dd HH:mm") : "";
       const newSleep = {
         sleepStart: formattedSleepStart,
         sleepEnd: formattedSleepEnd
@@ -44,11 +47,30 @@ const SleepMenu: React.FC = () => {
   const handleExpandClick = () => {
     setExpanded((prevExpanded) => !prevExpanded);
   };
+  
+  const now = async () => {
+    try {
+      const result = await fetchGetSleep();
+      const sleepActual = result.data.sleepActual;
+      const sleepProgress = (sleepActual * 100 / 7).toFixed(2)
+      console.log('sleep', result)
+      setProgressValue(parseFloat(sleepProgress));
+    } catch (error) {
+      console.error("Error fetching sleep data:", error);
+      setProgressValue(0);
+    }
+  };
+  useEffect(() => {
+    now();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [now()]);
 
   return (
     <div style={{ margin: "10px" }}>
-      <div>        
-        <Typography variant='h5'>Sleep</Typography>
+      <div>
+        <img src="public\moon-sleep.svg" alt="moon sleep" style={{width: "50px"}}></img>        
+        <Typography variant='h5' style={{marginBottom: 20}}>Sleep</Typography>
+        <ProgressBarComponent now= {progressValue} />
         <AnimatePresence>
           {expanded && (
             <motion.div
@@ -57,21 +79,27 @@ const SleepMenu: React.FC = () => {
             exit={{ height: 0, opacity: 0 }}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DemoContainer components={['DatePicker']}>
-                  <MobileDateTimePicker
-                    label="Sleep start time"
-                    format="yyyy-MM-dd hh:mm"
-                    value={sleepStart}
-                    onChange={handleDatePickerSleepStart}
-                  />
+                <DemoContainer components={['DatePicker']} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{display: "flex", justifyContent: "space-between", gap: "10px"}}>
+                    <img src="public\sleep-in-bed.svg" alt="Sleep in Bed"/>
+                    <MobileDateTimePicker
+                      label="Sleep start time"
+                      format="yyyy-MM-dd HH:mm"
+                      value={sleepStart}
+                      onChange={handleDatePickerSleepStart}
+                    />
+                  </div>
                 </DemoContainer>
-                <DemoContainer components={['DatePicker']}>
-                  <MobileDateTimePicker
-                    label="Wake up time"
-                    format="yyyy-MM-dd hh:mm"
-                    value={sleepEnd}
-                    onChange={handleDatePickerSleepEnd}
-                  />
+                <DemoContainer components={['DatePicker']} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{display: "flex", justifyContent: "space-between", gap: "10px"}}>
+                    <img src="public\wake-up-bed.svg" alt="Wake up Bed"></img>
+                    <MobileDateTimePicker
+                      label="Wake up time"
+                      format="yyyy-MM-dd HH:mm"
+                      value={sleepEnd}
+                      onChange={handleDatePickerSleepEnd}
+                    />
+                  </div>
                 </DemoContainer>
               </LocalizationProvider>
               <div style={{ marginTop: "10px" }}>
