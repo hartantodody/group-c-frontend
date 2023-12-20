@@ -3,8 +3,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import CircularProgress from "@mui/material/CircularProgress";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { fetchAddWaterIntake, fetchWaterIntake } from "../../utils/fetchAPI";
-
+import "./index.css";
 const WaterMenu: React.FC = () => {
   const [todaysIntake, setTodaysIntake] = useState<number | null>(null);
   const [userInput, setUserInput] = useState<number>(0);
@@ -66,27 +70,35 @@ const WaterMenu: React.FC = () => {
 
   return (
     <div>
-      <Typography variant='h5'>Water Intake</Typography>
+      <img src='/public/sports-bottle.svg' alt='glass of water icon' />
+      <Typography variant='h6' style={{ marginBottom: 10 }}>
+        Water Intake
+      </Typography>
       <Collapse in={!collapsed}>
         <div>
-          <Typography variant='h4' color='primary'>
+          <Typography variant='h6' color='primary'>
             {userInput === 0 ? "No Glasses" : `${userInput} ${userInput === 1 ? "Glass" : "Glasses"}`}
           </Typography>
-          <Typography>Target Intake: 8 glasses</Typography>
-          <Button variant='contained' color='primary' onClick={handleIncrement}>
-            + Glass
+          <Typography variant='body1'>
+            Target Intake: <span style={{ fontWeight: 700 }}>8 Glasses</span>
+          </Typography>
+          <Button variant='outlined' color='primary' onClick={handleIncrement} className='small-button-water'>
+            <AddIcon className='small-icon-water' />
+            <img src='/public/water-glass.svg' alt='glass of water icon' style={{ width: 10 }} />
           </Button>
-          <Button variant='contained' color='error' onClick={handleDecrement}>
-            - Glass
+          <Button variant='outlined' color='error' onClick={handleDecrement} className='small-button-water'>
+            <RemoveIcon className='small-icon-water' />
+            <img src='/public/water-glass.svg' alt='glass of water icon' style={{ width: 10 }} />
           </Button>
           <br />
           <Button
             variant='contained'
-            color='success'
+            color='primary'
             onClick={() => handleUserInputSubmit(userInput)}
-            style={{ width: 250, margin: "5px 0" }}
+            size='small'
+            style={{ margin: 10 }}
           >
-            Submit
+            <Typography variant='body1'>Submit</Typography>
           </Button>
           {loading && <CircularProgress />}
           <Typography variant='h6' style={{ marginTop: "20px" }}>
@@ -94,8 +106,8 @@ const WaterMenu: React.FC = () => {
           </Typography>
         </div>
       </Collapse>
-      <Button variant='contained' color='primary' onClick={handleToggleCollapse}>
-        {collapsed ? "Expand" : "Collapse"}
+      <Button variant='outlined' color='primary' onClick={handleToggleCollapse} className='small-button'>
+        {collapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
       </Button>
     </div>
   );
