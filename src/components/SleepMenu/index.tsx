@@ -47,7 +47,7 @@ const SleepMenu: React.FC = () => {
 
   return (
     <div style={{ margin: "10px" }}>
-      <div style={{ marginTop: "10px" }}>        
+      <div>        
         <Typography variant='h5'>Sleep</Typography>
         <AnimatePresence>
           {expanded && (
