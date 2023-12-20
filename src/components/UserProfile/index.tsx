@@ -11,7 +11,7 @@ import dateIcon from '../../assets/ProfilePageAssets/membersince.svg';
 import './index.css';
 
 interface UserData {
-  username?: string;
+  nickname?: string;
   email?: string;
   age?: number;
   weight?: number;
@@ -66,7 +66,7 @@ const UserProfile = () => {
                 <img src={usernameIcon} alt="username icon" />
                 <div className="text-container">
                   <p className="text-header">Username</p>
-                  <p>{userData.username}</p>
+                  <p>{userData.nickname}</p>
                 </div>
               </div>
               <div className="data-container">
