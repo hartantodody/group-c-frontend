@@ -17,3 +17,4 @@ export { default as SleepMenu } from "./SleepMenu";
 export { default as GoogleMaps } from "./GoogleMaps";
 export { default as EmailSendForm } from "./EmailSendForm";
 export { default as ResetPasswordForm } from "./ResetPasswordForm";
+export { default as Weather } from "./Weather";
