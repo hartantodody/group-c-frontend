@@ -17,3 +17,7 @@ export { default as SleepMenu } from "./SleepMenu";
 export { default as GoogleMaps } from "./GoogleMaps";
 export { default as EmailSendForm } from "./EmailSendForm";
 export { default as ResetPasswordForm } from "./ResetPasswordForm";
+export { default as VerifyButton } from "./VerifyButton";
+export { default as VerificationSuccess } from "./VerificationSuccess";
+export { default as FailedVerify } from "./FailedVerify";
+export { default as ResetPasswordForm } from "./ResetPasswordForm";
