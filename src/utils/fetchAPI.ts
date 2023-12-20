@@ -1,10 +1,7 @@
-/* eslint-disable no-useless-catch */
-import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl } from "./fetchUrl";
-import { Meditation, Water, Login, Profile, Register } from "./../interfaces/interface";
-import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl, waterUrl, meditationUrl } from "./fetchUrl";
+import { Meditation, Water, Login, Profile, Register, Sleep } from "./../interfaces/interface";
+import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl, waterUrl, meditationUrl, sleepUrl } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(loginUrl, {
       method: "POST",
@@ -16,14 +13,12 @@ export const fetchLogin = async (values: Login) => {
     console.log(values);
     const data = await response.json();
     return data;
-  
   } catch (error) {
     throw error;
   }
 };
 
 export const fetchRegister = async (values: Register) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(registerUrl, {
       method: "POST",
@@ -41,7 +36,6 @@ export const fetchRegister = async (values: Register) => {
 };
 
 export const fetchRegisterProfile = async (values: Profile) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(registerProfileUrl, {
@@ -196,6 +190,58 @@ export const fetchMeditation = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
+    throw error;
+  }
+};
+
+
+export const fetchAddSleep = async ({sleepStart, sleepEnd}:Sleep) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(sleepUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({sleepStart, sleepEnd}),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to add sleep");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchAddSleep:", error);
+    throw error;
+  }
+};
+
+export const fetchGetSleep = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(sleepUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to get sleep");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchGetSleep:", error);
     throw error;
   }
 };

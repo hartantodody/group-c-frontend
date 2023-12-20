@@ -27,7 +27,7 @@ const FoodSearch: React.FC = () => {
       return;
     }
 
-    const filteredData = foodData.filter((item) => item.foodName.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredData = foodData.filter((item) => item.foodName!.toLowerCase().includes(searchTerm.toLowerCase()));
     setFilteredFoodData(filteredData);
   }, [searchTerm, isSearchListOpen]);
 
@@ -42,7 +42,7 @@ const FoodSearch: React.FC = () => {
       return prevSelectedFoods;
     });
 
-    setIsSearchListOpen(false);
+    setIsSearchListOpen(true);
 
     setSearchTerm("");
   };
@@ -59,7 +59,7 @@ const FoodSearch: React.FC = () => {
 
   const handleAddFoodConsumed = async () => {
     try {
-      const foodNames = selectedFoods.map((food) => food.foodName);
+      const foodNames = selectedFoods.map((food) => food.foodName) as string[];
 
       const response = await fetchAddFoodConsumed(foodNames);
       console.log("Response:", response);
@@ -74,6 +74,7 @@ const FoodSearch: React.FC = () => {
 
       alert("All selected foods consumed successfully!");
       setSelectedFoods([]);
+      setIsSearchListOpen(true);
     } catch (error) {
       console.error("Error in main code:", error);
       alert(`Error in main code: ${error}`);
@@ -114,7 +115,7 @@ const FoodSearch: React.FC = () => {
                 <TableBody>
                   {filteredFoodData.map((item) => (
                     <TableRow key={item.id} onClick={() => handleItemClick(item)} className='search-list-item'>
-                      <TableCell>{titleCase(item.foodName)}</TableCell>
+                      <TableCell>{titleCase(item.foodName!)}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -132,7 +133,7 @@ const FoodSearch: React.FC = () => {
               <TableBody>
                 {selectedFoods.map((food) => (
                   <TableRow key={food.id}>
-                    <TableCell>{titleCase(food.foodName)}</TableCell>
+                    <TableCell>{titleCase(food.foodName!)}</TableCell>
                     <TableCell>
                       <IconButton onClick={() => handleDeleteSelected(food.id)} color='error'>
                         <DeleteIcon />

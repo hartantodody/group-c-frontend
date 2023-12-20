@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
-import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Water } from "../../interfaces/interface";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { fetchAddWaterIntake, fetchWaterIntake } from "../../utils/fetchAPI";
-
+import "./index.css";
 const WaterMenu: React.FC = () => {
-  const [waterIntake, setWaterIntake] = useState<Water>({ waterActual: 0 });
   const [todaysIntake, setTodaysIntake] = useState<number | null>(null);
-  const [userInput, setUserInput] = useState<string>("");
+  const [userInput, setUserInput] = useState<number>(0);
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
+
+  console.log(userInput);
+  console.log(todaysIntake);
 
   useEffect(() => {
     const fetchTodaysIntake = async () => {
       try {
         const response = await fetchWaterIntake();
-        const data = response.data.waterActual;
+        const data = response.data.waterActual as number;
         setTodaysIntake(data);
-        setUserInput(data.toString());
         console.log(data);
       } catch (error) {
         setTodaysIntake(0);
@@ -35,77 +38,67 @@ const WaterMenu: React.FC = () => {
     setCollapsed((prevCollapsed) => !prevCollapsed);
   };
 
-  const handleUserInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(event.target.value);
-  };
-
-  const handleUserInputSubmit = async () => {
-    const parsedIntake = parseInt(userInput, 10);
-
-    if (!isNaN(parsedIntake)) {
-      setLoading(true);
-
-      try {
-        await fetchAddWaterIntake({ waterActual: parsedIntake });
-        setWaterIntake({ waterActual: parsedIntake });
-        setUserInput("");
-        console.log({ waterActual: parsedIntake });
-      } catch (error: any) {
-        console.error("Error submitting water intake:", error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      alert("Invalid input. Please enter a valid number.");
-    }
-  };
-
   const handleIncrement = () => {
-    setWaterIntake((prevIntake) => {
-      const newIntake = { waterActual: (prevIntake?.waterActual || 0) + 1 };
-      setUserInput(newIntake.waterActual.toString());
-      return newIntake;
-    });
-    setTodaysIntake((prevIntake) => (prevIntake !== null ? prevIntake + 1 : 1));
+    setUserInput((prevIntake) => (prevIntake !== null ? prevIntake + 1 : 1));
   };
 
   const handleDecrement = () => {
-    setWaterIntake((prevIntake) => {
-      const newIntake = {
-        waterActual: (prevIntake?.waterActual || 0) > 0 ? (prevIntake?.waterActual || 0) - 1 : 0,
-      };
-      setUserInput(newIntake.waterActual.toString());
-      return newIntake;
-    });
-    setTodaysIntake((prevIntake) => (prevIntake !== null && prevIntake > 0 ? prevIntake - 1 : 0));
+    setUserInput((prevIntake) => (prevIntake !== null && prevIntake > 0 ? prevIntake - 1 : 0));
   };
+
+  const handleUserInputSubmit = async (input: number) => {
+    try {
+      setLoading(true);
+
+      const totalIntake = todaysIntake !== null ? todaysIntake + input : input;
+      console.log(totalIntake);
+
+      await fetchAddWaterIntake({ waterActual: totalIntake });
+
+      const response = await fetchWaterIntake();
+      const updatedData = response.data.waterActual as number;
+
+      setTodaysIntake(updatedData);
+      setUserInput(0);
+      console.log({ waterActual: updatedData });
+    } catch (error: any) {
+      console.error("Error submitting water intake:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
-      <Typography variant='h4'>Water Intake</Typography>
+      <img src='/public/sports-bottle.svg' alt='glass of water icon' />
+      <Typography variant='h6' style={{ marginBottom: 10 }}>
+        Water Intake
+      </Typography>
       <Collapse in={!collapsed}>
         <div>
-          <TextField
-            label='Current Intake'
-            type='number'
-            value={todaysIntake !== null ? todaysIntake.toString() : ""}
-            onChange={handleUserInputChange}
-            InputProps={{ style: { backgroundColor: "#FFFFFF" } }}
-          />
-          <Typography>Target Intake: 8 glasses</Typography>
-          <Button variant='contained' color='primary' onClick={handleIncrement}>
-            Add Glass
+          <Typography variant='h6' color='primary'>
+            {userInput === 0 ? "No Glasses" : `${userInput} ${userInput === 1 ? "Glass" : "Glasses"}`}
+          </Typography>
+          <Typography variant='body1'>
+            Target Intake: <span style={{ fontWeight: 700 }}>8 Glasses</span>
+          </Typography>
+          <Button variant='outlined' color='primary' onClick={handleIncrement} className='small-button-water'>
+            <AddIcon className='small-icon-water' />
+            <img src='/public/water-glass.svg' alt='glass of water icon' style={{ width: 10 }} />
           </Button>
-          <Button variant='contained' color='error' onClick={handleDecrement}>
-            Remove Glass
+          <Button variant='outlined' color='error' onClick={handleDecrement} className='small-button-water'>
+            <RemoveIcon className='small-icon-water' />
+            <img src='/public/water-glass.svg' alt='glass of water icon' style={{ width: 10 }} />
           </Button>
           <br />
           <Button
             variant='contained'
-            color='success'
-            onClick={handleUserInputSubmit}
-            style={{ width: 250, margin: "5px 0" }}
+            color='primary'
+            onClick={() => handleUserInputSubmit(userInput)}
+            size='small'
+            style={{ margin: 10 }}
           >
-            Submit
+            <Typography variant='body1'>Submit</Typography>
           </Button>
           {loading && <CircularProgress />}
           <Typography variant='h6' style={{ marginTop: "20px" }}>
@@ -113,8 +106,8 @@ const WaterMenu: React.FC = () => {
           </Typography>
         </div>
       </Collapse>
-      <Button variant='contained' color='primary' onClick={handleToggleCollapse}>
-        {collapsed ? "Expand" : "Collapse"}
+      <Button variant='outlined' color='primary' onClick={handleToggleCollapse} className='small-button'>
+        {collapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
       </Button>
     </div>
   );

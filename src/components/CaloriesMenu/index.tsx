@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Typography, Box, CircularProgress, Button, LinearProgress } from "@mui/material";
+import { Typography, Box, CircularProgress, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -49,22 +49,9 @@ const CaloriesMenu = () => {
     navigate("/add-food");
   };
 
-  const calculateProgress = () => {
-    if (calories && calories[0]?.actual && calories[0]?.target) {
-      return (calories[0].actual / calories[0].target) * 100;
-    }
-    return 0;
-  };
-
   return (
     <>
-      <Typography variant='h4'>Daily Calories</Typography>
-      <LinearProgress
-        variant='determinate'
-        value={calculateProgress()}
-        color='primary'
-        style={{ marginTop: 5, marginBottom: 5, height: 5, backgroundColor: "#FFFFFF" }}
-      />
+      <Typography variant='h6'>Daily Calories</Typography>
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -99,7 +86,7 @@ const CaloriesMenu = () => {
         )}
       </AnimatePresence>
       <Box style={{ marginTop: 5 }}>
-        <Button onClick={handleExpandClick} variant='outlined' color='secondary'>
+        <Button onClick={handleExpandClick} variant='contained' color='primary'>
           {expanded ? "Collapse" : "Expand"}
         </Button>
       </Box>

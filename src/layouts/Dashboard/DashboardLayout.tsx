@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
@@ -12,6 +12,17 @@ const DashboardLayout = ({
   stepsMenu,
   meditationMenu,
 }: DashboardLayoutProps) => {
+  const cardStyles = {
+    padding: 5,
+    borderRadius: 5,
+    minHeight: 150,
+    minWidth: 300,
+    backgroundImage: "url(layout-bg-rotated.svg)",
+    backgroundSize: 250,
+    backgroundPosition: "bottom right",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
     <div className='base-layout'>
       <Navbar />
@@ -22,11 +33,21 @@ const DashboardLayout = ({
       <TodayDate />
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
-        <div className='dashboard-card'>{caloriesMenu}</div>
-        <div className='dashboard-card'>{waterMenu}</div>
-        <div className='dashboard-card'>{sleepMenu}</div>
-        <div className='dashboard-card'>{stepsMenu}</div>
-        <div className='dashboard-card'>{meditationMenu}</div>
+        <Paper elevation={5} sx={cardStyles}>
+          {caloriesMenu}
+        </Paper>
+        <Paper elevation={5} sx={cardStyles}>
+          {waterMenu}
+        </Paper>
+        <Paper elevation={5} sx={cardStyles}>
+          {sleepMenu}
+        </Paper>
+        <Paper elevation={5} sx={cardStyles}>
+          {stepsMenu}
+        </Paper>
+        <Paper elevation={5} sx={cardStyles}>
+          {meditationMenu}
+        </Paper>
       </div>
     </div>
   );

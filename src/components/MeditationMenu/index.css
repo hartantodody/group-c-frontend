@@ -1,0 +1,11 @@
+.small-button{
+    min-width: 35px !important; 
+    height: 24px !important;
+    padding: 0 !important;
+    margin: 5px !important;
+}
+.small-icon{
+    width: 17px !important; 
+    height: 17px !important;
+    padding: 0 !important;
+}
