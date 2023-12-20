@@ -70,7 +70,7 @@ const WaterMenu: React.FC = () => {
 
   return (
     <div>
-      <img src='/public/sports-bottle.svg' alt='glass of water icon' />
+      <img src='/public/glass-of-water-with-drop-svgrepo-com.svg' alt='glass of water icon' />
       <Typography variant='h6' style={{ marginBottom: 10 }}>
         Water Intake
       </Typography>

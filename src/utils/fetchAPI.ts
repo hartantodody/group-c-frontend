@@ -71,6 +71,23 @@ export const fetchCalories = async () => {
   }
 };
 
+export const fetchCalculateCalories = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(caloriesUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const fetchFoodConsumed = async () => {
   try {
     const token = localStorage.getItem("token");
@@ -194,8 +211,7 @@ export const fetchMeditation = async () => {
   }
 };
 
-
-export const fetchAddSleep = async ({sleepStart, sleepEnd}:Sleep) => {
+export const fetchAddSleep = async ({ sleepStart, sleepEnd }: Sleep) => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(sleepUrl, {
@@ -204,7 +220,7 @@ export const fetchAddSleep = async ({sleepStart, sleepEnd}:Sleep) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({sleepStart, sleepEnd}),
+      body: JSON.stringify({ sleepStart, sleepEnd }),
     });
 
     if (!response.ok) {
