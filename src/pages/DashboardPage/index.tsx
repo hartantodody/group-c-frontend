@@ -1,4 +1,4 @@
-import { CaloriesMenu, MeditationMenu, SleepMenu, WaterMenu } from "../../components";
+import { CaloriesMenu, GoogleMaps, MeditationMenu, SleepMenu, WaterMenu } from "../../components";
 import DashboardLayout from "../../layouts/Dashboard/DashboardLayout";
 
 const DashboardPage = () => {
@@ -6,6 +6,7 @@ const DashboardPage = () => {
     <DashboardLayout
       caloriesMenu={<CaloriesMenu />}
       sleepMenu={<SleepMenu />}
+      stepsMenu={<GoogleMaps />}
       waterMenu={<WaterMenu />}
       meditationMenu={<MeditationMenu />}
     />

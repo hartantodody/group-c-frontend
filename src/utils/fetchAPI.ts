@@ -1,5 +1,14 @@
-import { Meditation, Water, Login, Profile, Register, Sleep } from "./../interfaces/interface";
-import { loginUrl, registerUrl, registerProfileUrl, caloriesUrl, waterUrl, meditationUrl, sleepUrl } from "./fetchUrl";
+import { Meditation, Water, Login, Profile, Register, Sleep, Steps } from "./../interfaces/interface";
+import {
+  loginUrl,
+  registerUrl,
+  registerProfileUrl,
+  caloriesUrl,
+  waterUrl,
+  meditationUrl,
+  sleepUrl,
+  stepsUrl,
+} from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
   try {
@@ -251,6 +260,58 @@ export const fetchGetSleep = async () => {
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to get sleep");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchGetSleep:", error);
+    throw error;
+  }
+};
+
+export const fetchPostSteps = async ({ stepsActual }: Steps) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(stepsUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ stepsActual }),
+    });
+
+    console.log(stepsActual);
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to save your steps progress!");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchPostSteps:", error);
+    throw error;
+  }
+};
+
+export const fetchGetSteps = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(stepsUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to get steps");
     }
 
     const data = await response.json();

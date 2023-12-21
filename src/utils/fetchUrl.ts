@@ -12,3 +12,4 @@ export const foodConsumedUrl = baseUrl + "/v1/consume";
 export const waterUrl = baseUrl + "/v1/water";
 export const sleepUrl = baseUrl + "/v1/sleep";
 export const meditationUrl = baseUrl + "/v1/meditation";
+export const stepsUrl = baseUrl + "/v1/steps";
