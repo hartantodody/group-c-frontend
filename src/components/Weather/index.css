@@ -1,0 +1,56 @@
+.rw-container-header{
+    font-size: small !important;
+    text-align: center !important;
+}
+
+.rw-today-current {
+    font-size: 25px !important;
+}
+
+.rw-today-range {
+    display: none;
+}
+
+.rw-today-desc {
+    font-size: 10px !important;
+}
+
+.rw-today-info {
+    font-size: 12px !important;
+}
+
+.rw-today-hr {
+    margin: 6px !important;
+    margin-left: 0 !important;
+}
+
+.rw-container-right {
+    display: none !important;
+}
+
+.rw-container-left {
+    width: 100% !important;
+    margin: 2px !important;
+    padding: 5px !important;
+}
+
+@media (min-width: 767px) {
+    .rw-container-right {
+        display: block !important;
+        text-align: center !important;
+    }
+
+    .rw-container-left {
+        width: auto !important;
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+    }
+
+    .button-header {
+        display: none !important;
+    }
+
+    .container {
+        height: 100% !important;
+    }
+}

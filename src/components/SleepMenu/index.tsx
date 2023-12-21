@@ -6,6 +6,8 @@ import { LocalizationProvider, MobileDateTimePicker } from "@mui/x-date-pickers"
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { format } from "date-fns";
 import { fetchAddSleep, fetchGetSleep } from "../../utils/fetchAPI";
 import  ProgressBarComponent  from "../ProgressBar";
@@ -104,12 +106,12 @@ const SleepMenu: React.FC = () => {
               </LocalizationProvider>
               <div style={{ marginTop: "10px" }}>
                 <Button
-                  variant='outlined'
-                  color='secondary'
+                  variant='contained'
+                  color='primary'
                   disabled={loading}
                   onClick={handleSubmit}
                 >
-                  submit
+                  <Typography variant='body1'>Submit</Typography>
                 </Button>
               </div>
             </motion.div>
@@ -117,8 +119,8 @@ const SleepMenu: React.FC = () => {
         </AnimatePresence>
       </div>
       <Box style={{ marginTop: 20 }}>
-        <Button onClick={handleExpandClick} variant='outlined' color='secondary'>
-          {expanded ? "Collapse" : "Expand"}
+        <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </Button>
       </Box>
     </div>

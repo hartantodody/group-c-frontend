@@ -8,6 +8,7 @@ import {
   meditationUrl,
   sleepUrl,
   stepsUrl,
+  editProfileUrl
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
@@ -48,6 +49,25 @@ export const fetchRegisterProfile = async (values: Profile) => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(registerProfileUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(values),
+    });
+    console.log(values);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchEditProfile = async (values: Profile) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(editProfileUrl, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
