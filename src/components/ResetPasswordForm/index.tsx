@@ -2,11 +2,13 @@ import { Button, TextField, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import React from "react";
 
 const ResetPasswordForm = () => {
   // Extract token and userId from URL parameters
   const { token, userId } = useParams<{ token: string; userId: string }>();
+  const navigate = useNavigate()
 
   const validationSchema = Yup.object({
     password: Yup.string()
@@ -47,6 +49,7 @@ const ResetPasswordForm = () => {
           confirmButtonText: "Okay",
           confirmButtonColor: "#005792",
         });
+        navigate("/login")
       } catch (error) {
         // Handle errors
       }

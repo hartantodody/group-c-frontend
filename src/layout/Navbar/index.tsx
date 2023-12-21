@@ -6,13 +6,16 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import mainLogo from "../../assets/helena-main-logo-01-01.svg";
 import "./index.css";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Button, Avatar } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import React from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -27,7 +30,18 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    Swal.fire({
+      icon: "success",
+      title: "Log out",
+      text: "Logged out",
+      confirmButtonText: "Okay",
+      confirmButtonColor: "#005792",
+    });
+    navigate("/landing-page");
+  };
 
   const navigateToRegister = () => {
     navigate("/signup");
@@ -37,17 +51,16 @@ const Navbar = () => {
     navigate("/signin");
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-      Swal.fire({
-        icon: "success",
-        title: "Log out",
-        text: "Logged out",
-        confirmButtonText: "Okay",
-        confirmButtonColor: "#005792",
-      });
-      navigate("/landing-page");
+  const navigateToUserProfile = () => {
+    navigate("/user-profile");
+  };
+
+  const navigateToDashboard = () => {
+    navigate("/");
+  };
+
+  const navigateToAddFood = () => {
+    navigate("/add-food");
   };
 
   return (
@@ -69,10 +82,7 @@ const Navbar = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
         />
 
-        <IconButton
-          onClick={toggleMenu}
-          style={{ display: isMenuOpen ? "none" : "" }}
-        >
+        <IconButton onClick={toggleMenu} style={{ display: isMenuOpen ? "none" : "" }}>
           <MenuIcon />
         </IconButton>
 
@@ -91,17 +101,65 @@ const Navbar = () => {
               </IconButton>
             </div>
             <div className="content-inmenu">
-            {isLoggedIn ? (
-                <Button
-                className="logout-button"
-                variant="contained"
-                onClick={() => {
-                  handleLogout();
-                  setIsMenuOpen(false);
-                }}
-              >
-                Log Out
-              </Button>
+              {isLoggedIn ? (
+                <>
+                  {location.pathname === '/' && (
+                    <>
+                      <Avatar
+                        alt="User Avatar"
+                        src="path/to/user/avatar.jpg"
+                        onClick={navigateToUserProfile}
+                      />
+                      <Button
+                        className="profile-button"
+                        variant="contained"
+                        onClick={navigateToUserProfile}
+                      >
+                        Profile
+                      </Button>
+                      <Button
+                        className="add-food-button"
+                        variant="contained"
+                        onClick={navigateToAddFood}
+                      >
+                        Add Food
+                      </Button>
+                    </>
+                  )}
+                  {location.pathname === '/user-profile' && (
+                    <>
+                      <Avatar
+                        alt="User Avatar"
+                        src="path/to/user/avatar.jpg"
+                        onClick={navigateToUserProfile}
+                      />
+                      <Button
+                        className="dahsboard-button"
+                        variant="contained"
+                        onClick={navigateToDashboard}
+                      >
+                        Dashboard
+                      </Button>
+                      <Button
+                        className="add-food-button"
+                        variant="contained"
+                        onClick={navigateToAddFood}
+                      >
+                        Add Food
+                      </Button>
+                    </>
+                  )}
+                  <Button
+                    className="logout-button"
+                    variant="contained"
+                    onClick={() => {
+                      handleLogout();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Log Out
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button

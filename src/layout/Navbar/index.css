@@ -69,3 +69,9 @@
     right: -50px !important;
     top: 15px !important;
 }
+
+.logout-button{
+    position: absolute !important;
+    bottom: 0;
+    margin-bottom: 30px !important;
+}
