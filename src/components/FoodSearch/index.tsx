@@ -12,8 +12,10 @@ import ClearIcon from "@mui/icons-material/Clear";
 import Button from "@mui/material/Button";
 import { foodData } from "../../utils/foodData";
 import { FoodItem } from "../../interfaces/interface";
+import Swal from "sweetalert2";
 import "./index.css";
 import { fetchAddFoodConsumed } from "../../utils/fetchAPI";
+import { ShowFoodConsumed } from "..";
 
 const FoodSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -60,24 +62,28 @@ const FoodSearch: React.FC = () => {
   const handleAddFoodConsumed = async () => {
     try {
       const foodNames = selectedFoods.map((food) => food.foodName) as string[];
-
       const response = await fetchAddFoodConsumed(foodNames);
-      console.log("Response:", response);
+      console.log(response);
 
-      const responseData = await response.text();
-      console.log("Response Content:", responseData);
-
-      if (!response.ok) {
-        alert(`Error: ${responseData.message}`);
-        return;
+      if (response.success === true) {
+        Swal.fire({
+          icon: "success",
+          title: "Success adding food data",
+          text: `${response.message}`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#005792",
+        });
+        setSelectedFoods([]);
+        setIsSearchListOpen(true);
       }
-
-      alert("All selected foods consumed successfully!");
-      setSelectedFoods([]);
-      setIsSearchListOpen(true);
     } catch (error) {
-      console.error("Error in main code:", error);
-      alert(`Error in main code: ${error}`);
+      Swal.fire({
+        icon: "error",
+        title: "Error adding food data",
+        text: `${error}`,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#005792",
+      });
     }
   };
 
@@ -149,6 +155,7 @@ const FoodSearch: React.FC = () => {
           </Button>
         </div>
       )}
+      <ShowFoodConsumed />
     </div>
   );
 };
