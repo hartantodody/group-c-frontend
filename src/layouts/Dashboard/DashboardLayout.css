@@ -13,6 +13,14 @@ body {
   height: 100svh;    
 }
 
+.title{
+  width: 50%;
+}
+
+.weather{
+  width: 40%;
+}
+
 .user-title{
 text-align: left;
 padding: 15px

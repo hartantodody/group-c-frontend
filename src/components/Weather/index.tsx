@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import ReactWeather, { useVisualCrossing } from 'react-open-weather';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import "./index.css"
+import { customStyles } from './style';
+import { Button } from '@mui/material';
 
 const Weather = () => {
   const [userLocation, setUserLocation] = useState({ lat: null as number | null, lon: null as number | null });
   const [locationName, setLocationName] = useState('');
   const [loadingLocation, setLoadingLocation] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    // Get user's current location using Geolocation API
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         setUserLocation({
@@ -53,22 +58,32 @@ const Weather = () => {
     unit: 'metric',
   });
 
+  const handleExpandClick = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
   return (
     <div>
       {loadingLocation ? (
         <p>Loading location...</p>
       ) : (
-        <ReactWeather
-          isLoading={isLoading}
-          errorMessage={errorMessage}
-          data={data}
-          lang="en"
-          locationLabel={`Current Location: ${locationName || 'unknown'}`}
-          unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
-          showForecast={false} // Set showForecast to false to hide the forecast
-          current={true} // Set current to true to display only the current weather
-        />
+        <div className='container' style={{padding: 0, background: "transparent", overflow: "hidden", height: expanded ? '': "65px"}}>
+          <ReactWeather
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+            data={data}
+            lang="en"
+            locationLabel={`${locationName || 'unknown'}`}
+            unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
+            showForecast={false}
+            current={true}
+            theme={customStyles}
+          />
+        </div>
       )}
+      <Button onClick={handleExpandClick} variant='text' color='secondary' className='button-header'>
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+      </Button>
     </div>
   );
 };

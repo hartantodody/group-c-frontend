@@ -1,8 +1,7 @@
-import { Typography, Paper } from "@mui/material";
+import { Typography, Paper, Box } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
-import { TodayDate } from "../../components";
 import { Weather } from "../../components"
 
 const DashboardLayout = ({
@@ -27,12 +26,16 @@ const DashboardLayout = ({
   return (
     <div className='base-layout'>
       <Navbar />
-      <div className='title'></div>
-      <Typography variant='h3' color='#FFFFFF' className='user-title'>
-        Hi, {/* tambahin nama user pake use context*/}!
-      </Typography>
-      <TodayDate />
-      <Weather />
+      <Box sx={{display: "flex", flexDirection:"column"}}>
+        <div className='title'>
+          <Typography variant='h3' color='#FFFFFF' className='user-title'>
+            Hi, {/* tambahin nama user pake use context*/}!
+          </Typography>
+        </div>
+        <div className="weather">
+          <Weather />
+        </div>        
+      </Box>
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
         <Paper elevation={5} sx={cardStyles}>
