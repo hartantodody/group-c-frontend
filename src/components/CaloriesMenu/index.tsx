@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalculateCalories, fetchCalories } from "../../utils/fetchAPI";
 import Swal from "sweetalert2";
-import { ShowFoodConsumed } from "..";
 import "./index.css";
+import { ProgressBar } from "..";
 
 type CalorieData = {
   id: number;
@@ -30,7 +30,6 @@ const CaloriesMenu = () => {
 
       if (data.success === true) {
         setCalories(data.data);
-        console.log("ini kalori: ", calories);
       } else if (data.success === false) {
         Swal.fire({
           icon: "error",
@@ -43,7 +42,7 @@ const CaloriesMenu = () => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Error in calculating calories",
+        title: "Error!",
         text: `${error}`,
         confirmButtonText: "OK",
         confirmButtonColor: "#005792",
@@ -58,23 +57,11 @@ const CaloriesMenu = () => {
       if (response.success === true) {
         const data = response.data;
         setCalories(data);
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Failed fetching calories data!",
-          text: `${response.message}`,
-          confirmButtonText: "OK",
-          confirmButtonColor: "#005792",
-        });
+      } else if (response.success === false) {
+        console.error(response.message);
       }
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error in fetching calories",
-        text: `${error}`,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#005792",
-      });
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -92,10 +79,13 @@ const CaloriesMenu = () => {
     navigate("/add-food");
   };
 
+  const caloriesProgress = (((calories?.actual ?? 0) * 100) / (calories?.target ?? 1)).toFixed(2);
+
   return (
     <>
       <img src='public\fire-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }}></img>
       <Typography variant='h6'>Daily Calories</Typography>
+      <ProgressBar now={parseFloat(caloriesProgress)} />
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -138,9 +128,8 @@ const CaloriesMenu = () => {
                   className='small-button-food'
                 >
                   <AddIcon />{" "}
-                  <img src='public/food-menu-3-svgrepo-com.svg' alt='healthy-food-icon' style={{ width: 25 }} />
+                  <img src='public/food-menu-3-svgrepo-com.svg' alt='healthy-food-icon' style={{ width: 35 }} />
                 </Button>
-                <ShowFoodConsumed />
               </>
             )}
           </motion.div>

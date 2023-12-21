@@ -15,6 +15,7 @@ import { FoodItem } from "../../interfaces/interface";
 import Swal from "sweetalert2";
 import "./index.css";
 import { fetchAddFoodConsumed } from "../../utils/fetchAPI";
+import { ShowFoodConsumed } from "..";
 
 const FoodSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -62,16 +63,19 @@ const FoodSearch: React.FC = () => {
     try {
       const foodNames = selectedFoods.map((food) => food.foodName) as string[];
       const response = await fetchAddFoodConsumed(foodNames);
-      Swal.fire({
-        icon: "error",
-        title: "Error adding food data",
-        text: `${response.message}`,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#005792",
-      });
-      alert("All selected foods consumed successfully!");
-      setSelectedFoods([]);
-      setIsSearchListOpen(true);
+      console.log(response);
+
+      if (response.success === true) {
+        Swal.fire({
+          icon: "success",
+          title: "Success adding food data",
+          text: `${response.message}`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#005792",
+        });
+        setSelectedFoods([]);
+        setIsSearchListOpen(true);
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -151,6 +155,7 @@ const FoodSearch: React.FC = () => {
           </Button>
         </div>
       )}
+      <ShowFoodConsumed />
     </div>
   );
 };

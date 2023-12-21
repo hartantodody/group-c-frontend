@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Steps } from "../../interfaces/interface";
 import { grey } from "@mui/material/colors";
 import "./index.css";
+import { ProgressBar } from "..";
 
 const GoogleMaps = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -103,23 +104,11 @@ const GoogleMaps = () => {
         setTodaysSteps(data.data.stepsActual);
         console.log(todaysSteps);
       } else if (data.success === false) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: `${data.message}`,
-          confirmButtonText: "OK",
-          confirmButtonColor: "#005792",
-        });
+        console.error(data.message);
       }
     })
     .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: `${error.message}`,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#005792",
-      });
+      console.error(error.message);
     });
 
   const handleSubmit = () => {
@@ -161,14 +150,17 @@ const GoogleMaps = () => {
     setExpanded((prevExpanded) => !prevExpanded);
   };
 
+  const stepsProgress = (((todaysSteps !== 0 && todaysSteps !== null ? todaysSteps : 0) * 100) / 8000).toFixed(2);
+
   return (
     <>
       <img
         src='public\footsteps-silhouette-variant-svgrepo-com.svg'
         alt='calories burn icon'
         style={{ width: "50px" }}
-      ></img>
+      />
       <Typography variant='h6'>Steps</Typography>
+      <ProgressBar now={parseFloat(stepsProgress)} />
       <AnimatePresence>
         {expanded && (
           <motion.div

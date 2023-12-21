@@ -9,6 +9,7 @@ import {
   sleepUrl,
   stepsUrl,
   editProfileUrl,
+  foodConsumedUrl,
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
@@ -137,7 +138,7 @@ export const fetchFoodConsumed = async () => {
 export const fetchAddFoodConsumed = async (foodNames: string[]) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(caloriesUrl, {
+    const response = await fetch(foodConsumedUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

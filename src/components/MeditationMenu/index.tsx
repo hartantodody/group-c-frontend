@@ -11,12 +11,13 @@ import { fetcAddhMeditation } from "../../utils/fetchAPI";
 import { fetchMeditation } from "../../utils/fetchAPI";
 import Swal from "sweetalert2";
 import "./index.css";
+import { ProgressBar } from "..";
 
 const MeditationMenu: React.FC = () => {
   const [totalSeconds, setTotalSeconds] = useState<number>(0);
   const [todaysMeditation, setTodaysMeditation] = useState<number>(0);
   const [counting, setCounting] = useState<boolean>(false);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -31,26 +32,20 @@ const MeditationMenu: React.FC = () => {
     return () => clearInterval(timer);
   }, [counting]);
 
-  useEffect(() => {
-    const fetchDailyMeditation = async () => {
-      try {
-        const response = await fetchMeditation();
-        const data = response.data.meditationActual;
-        if (data === null) {
-          Swal.fire({
-            icon: "error",
-            title: "Error Fetching Meditation Data",
-            text: "There was an error fetching today's meditation data. Please try again later.",
-            confirmButtonText: "OK",
-            confirmButtonColor: "#005792",
-          });
-        }
-        setTodaysMeditation(data);
-      } catch (error) {
-        console.error("Error fetching today's meditation:", error);
+  const fetchDailyMeditation = async () => {
+    try {
+      const response = await fetchMeditation();
+      const data = response.data.meditationActual;
+      if (data === null) {
+        console.error(data.message);
       }
-    };
+      setTodaysMeditation(data);
+    } catch (error) {
+      console.error("Error fetching today's meditation:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchDailyMeditation();
   }, []);
 
@@ -82,7 +77,7 @@ const MeditationMenu: React.FC = () => {
         if (data.success === true) {
           Swal.fire({
             icon: "success",
-            title: "Meditation Submitted!",
+            title: "Meditation time submitted!",
             text: `${data.message}`,
             confirmButtonText: "OK",
             confirmButtonColor: "#005792",
@@ -90,7 +85,7 @@ const MeditationMenu: React.FC = () => {
         } else if (data.success === false) {
           Swal.fire({
             icon: "error",
-            title: "Submit Failed!",
+            title: "Submission has failed!",
             text: `${data.message}`,
             confirmButtonText: "OK",
             confirmButtonColor: "#005792",
@@ -101,7 +96,7 @@ const MeditationMenu: React.FC = () => {
       alert("Error: " + error);
     }
 
-    fetchMeditation();
+    fetchDailyMeditation();
   };
 
   const formatTime = (seconds: number) => {
@@ -110,12 +105,15 @@ const MeditationMenu: React.FC = () => {
     return `${mins} min ${secs} sec`;
   };
 
+  const meditationProgress = ((todaysMeditation * 100) / 15).toFixed(2);
+
   return (
     <div>
       <img src='/public/meditation-yoga-posture.svg' alt='meditation logo' />
       <Typography variant='h6' style={{ marginBottom: 10 }}>
         Meditation
       </Typography>
+      <ProgressBar now={parseFloat(meditationProgress)} />
       <Collapse in={!collapsed}>
         <div>
           <Typography variant='body1' color='primary'>
