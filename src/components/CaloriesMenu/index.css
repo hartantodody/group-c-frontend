@@ -1,0 +1,11 @@
+.small-button-food{
+    min-width: 45px !important; 
+    height: 40px !important;
+    padding: 0 !important;
+    margin: 5px !important;
+}
+.small-icon{
+    width: 17px !important; 
+    height: 17px !important;
+    padding: 0 !important;
+}

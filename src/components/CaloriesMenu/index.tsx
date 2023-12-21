@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
-import { Typography, Box, CircularProgress, Button } from "@mui/material";
+import { Typography, CircularProgress, Button, Table, TableBody, TableCell, TableRow } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { fetchCalories } from "../../utils/fetchAPI";
+import { fetchCalculateCalories, fetchCalories } from "../../utils/fetchAPI";
 import { ShowFoodConsumed } from "..";
+import Swal from "sweetalert2";
+import "./index.css";
 
 type CalorieData = {
+  id: number;
   actual: number;
   bmi: number;
   amr: number;
@@ -19,25 +24,68 @@ const CaloriesMenu = () => {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchCalories();
+  const handleCalculateCalories = async () => {
+    try {
+      const data = await fetchCalculateCalories();
+
+      if (data.success === true) {
+        setCalories(data.data);
+      } else if (data.success === false) {
+        Swal.fire({
+          icon: "error",
+          title: "Calories Calculation Failed!",
+          text: `${data.message}`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#005792",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error in main code",
+        text: `${error}`,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#005792",
+      });
+    }
+    console.log(calories);
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await fetchCalories();
+      console.log("----", response);
+      if (response.success === true) {
+        Swal.fire({
+          icon: "success",
+          title: "Calories data fetched successfully!",
+          text: `${response.message}`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#005792",
+        });
         const data = response.data;
 
-        if (data === undefined) {
-          alert("Data not available");
-        } else {
-          setCalories(data);
-          console.log(data);
-        }
-      } catch (error) {
-        alert(`Error in fetching calories: ${error}`);
-      } finally {
-        setLoading(false);
+        setCalories(data);
+        console.log(data);
+        console.log(response);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Failed fetching calories data!",
+          text: `${response.message}`,
+          confirmButtonText: "OK",
+          confirmButtonColor: "#005792",
+        });
       }
-    };
+    } catch (error) {
+      alert(`Error in fetching calories: ${error}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
+    handleCalculateCalories();
     fetchData();
   }, []);
 
@@ -48,9 +96,9 @@ const CaloriesMenu = () => {
   const handleAddFood = () => {
     navigate("/add-food");
   };
-
   return (
     <>
+      <img src='public\fire-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }}></img>
       <Typography variant='h6'>Daily Calories</Typography>
       <AnimatePresence>
         {expanded && (
@@ -63,21 +111,41 @@ const CaloriesMenu = () => {
               <CircularProgress />
             ) : (
               <>
-                <Typography variant='body1'>
-                  Calories intake: {calories !== null && calories[0]?.actual !== null ? calories[0].actual : "N/A"}
-                </Typography>
-                <Typography variant='body1'>
-                  Body Mass Index (BMI): {calories !== null && calories[0]?.bmi !== null ? calories[0].bmi : "N/A"}
-                </Typography>
-                <Typography variant='body1'>
-                  Active Metabolic Rate (AMR):{" "}
-                  {calories !== null && calories[0]?.amr !== null ? calories[0].amr : "N/A"}
-                </Typography>
-                <Typography variant='body1'>
-                  Target: {calories !== null && calories[0]?.target !== null ? calories[0].target : "N/A"} kcal
-                </Typography>
-                <Button variant='contained' size='small' color='success' onClick={handleAddFood}>
-                  <AddIcon /> <img src='/eat-food-healthy-life-svgrepo-com.svg' alt='healthy-food-icon' />
+                <Button variant='contained' size='small' color='primary' onClick={handleCalculateCalories}>
+                  Calculate
+                </Button>
+                {calories && calories[0] && (
+                  <Table>
+                    <TableBody>
+                      {calories &&
+                        calories.map((calorie) => (
+                          <TableRow key={calorie.id}>
+                            <TableCell>Calories intake:</TableCell>
+                            <TableCell>{calorie.actual !== null ? calorie.actual : "N/A"}</TableCell>
+
+                            <TableCell>Body Mass Index (BMI):</TableCell>
+                            <TableCell>{calorie.bmi !== null ? calorie.bmi : "N/A"}</TableCell>
+
+                            <TableCell>Active Metabolic Rate (AMR):</TableCell>
+                            <TableCell>{calorie.amr !== null ? calorie.amr : "N/A"}</TableCell>
+
+                            <TableCell>Target:</TableCell>
+                            <TableCell>{calorie.target !== null ? `${calorie.target} kcal` : "N/A"}</TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                )}
+                <br />
+                <Button
+                  variant='outlined'
+                  size='small'
+                  color='primary'
+                  onClick={handleAddFood}
+                  className='small-button-food'
+                >
+                  <AddIcon />{" "}
+                  <img src='public/food-menu-3-svgrepo-com.svg' alt='healthy-food-icon' style={{ width: 25 }} />
                 </Button>
                 <ShowFoodConsumed />
               </>
@@ -85,11 +153,9 @@ const CaloriesMenu = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Box style={{ marginTop: 5 }}>
-        <Button onClick={handleExpandClick} variant='contained' color='primary'>
-          {expanded ? "Collapse" : "Expand"}
-        </Button>
-      </Box>
+      <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
+        {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </Button>
     </>
   );
 };

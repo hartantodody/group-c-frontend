@@ -112,7 +112,7 @@ const MeditationMenu: React.FC = () => {
 
   return (
     <div>
-      <img src='/public/meditation-icon.svg' alt='meditation logo' />
+      <img src='/public/meditation-yoga-posture.svg' alt='meditation logo' />
       <Typography variant='h6' style={{ marginBottom: 10 }}>
         Meditation
       </Typography>

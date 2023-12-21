@@ -63,6 +63,10 @@ export interface Meditation {
 
 export interface Sleep {
   sleepStart: string;
-  sleepEnd: string
+  sleepEnd: string;
+  target?: number;
+}
+export interface Steps {
+  stepsActual: number;
   target?: number;
 }
