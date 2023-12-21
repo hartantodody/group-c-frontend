@@ -6,8 +6,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchCalculateCalories, fetchCalories } from "../../utils/fetchAPI";
-import { ShowFoodConsumed } from "..";
 import Swal from "sweetalert2";
+import { ShowFoodConsumed } from "..";
 import "./index.css";
 
 type CalorieData = {
@@ -20,8 +20,8 @@ type CalorieData = {
 
 const CaloriesMenu = () => {
   const navigate = useNavigate();
-  const [calories, setCalories] = useState<CalorieData[] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [calories, setCalories] = useState<CalorieData | null>(null);
+  const [loading, setLoading] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
   const handleCalculateCalories = async () => {
@@ -30,6 +30,7 @@ const CaloriesMenu = () => {
 
       if (data.success === true) {
         setCalories(data.data);
+        console.log("ini kalori: ", calories);
       } else if (data.success === false) {
         Swal.fire({
           icon: "error",
@@ -42,32 +43,21 @@ const CaloriesMenu = () => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Error in main code",
+        title: "Error in calculating calories",
         text: `${error}`,
         confirmButtonText: "OK",
         confirmButtonColor: "#005792",
       });
     }
-    console.log(calories);
   };
 
   const fetchData = async () => {
     try {
       const response = await fetchCalories();
-      console.log("----", response);
-      if (response.success === true) {
-        Swal.fire({
-          icon: "success",
-          title: "Calories data fetched successfully!",
-          text: `${response.message}`,
-          confirmButtonText: "OK",
-          confirmButtonColor: "#005792",
-        });
-        const data = response.data;
 
+      if (response.success === true) {
+        const data = response.data;
         setCalories(data);
-        console.log(data);
-        console.log(response);
       } else {
         Swal.fire({
           icon: "error",
@@ -78,14 +68,19 @@ const CaloriesMenu = () => {
         });
       }
     } catch (error) {
-      alert(`Error in fetching calories: ${error}`);
+      Swal.fire({
+        icon: "error",
+        title: "Error in fetching calories",
+        text: `${error}`,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#005792",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    handleCalculateCalories();
     fetchData();
   }, []);
 
@@ -96,6 +91,7 @@ const CaloriesMenu = () => {
   const handleAddFood = () => {
     navigate("/add-food");
   };
+
   return (
     <>
       <img src='public\fire-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }}></img>
@@ -114,28 +110,25 @@ const CaloriesMenu = () => {
                 <Button variant='contained' size='small' color='primary' onClick={handleCalculateCalories}>
                   Calculate
                 </Button>
-                {calories && calories[0] && (
-                  <Table>
-                    <TableBody>
-                      {calories &&
-                        calories.map((calorie) => (
-                          <TableRow key={calorie.id}>
-                            <TableCell>Calories intake:</TableCell>
-                            <TableCell>{calorie.actual !== null ? calorie.actual : "N/A"}</TableCell>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Calories intake</TableCell>
+                      <TableCell>Body Mass Index (BMI)</TableCell>
+                      <TableCell>Active Metabolic Rate (AMR)</TableCell>
+                      <TableCell>Target</TableCell>
+                    </TableRow>
+                    {calories && (
+                      <TableRow key={calories.id}>
+                        <TableCell>{calories.actual !== null ? calories.actual : "N/A"}</TableCell>
+                        <TableCell>{calories.bmi !== null ? calories.bmi : "N/A"}</TableCell>
+                        <TableCell>{calories.amr !== null ? calories.amr : "N/A"}</TableCell>
+                        <TableCell>{calories.target !== null ? `${calories.target} kcal` : "N/A"}</TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
 
-                            <TableCell>Body Mass Index (BMI):</TableCell>
-                            <TableCell>{calorie.bmi !== null ? calorie.bmi : "N/A"}</TableCell>
-
-                            <TableCell>Active Metabolic Rate (AMR):</TableCell>
-                            <TableCell>{calorie.amr !== null ? calorie.amr : "N/A"}</TableCell>
-
-                            <TableCell>Target:</TableCell>
-                            <TableCell>{calorie.target !== null ? `${calorie.target} kcal` : "N/A"}</TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                  </Table>
-                )}
                 <br />
                 <Button
                   variant='outlined'

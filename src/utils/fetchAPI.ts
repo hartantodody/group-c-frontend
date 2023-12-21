@@ -8,7 +8,7 @@ import {
   meditationUrl,
   sleepUrl,
   stepsUrl,
-  editProfileUrl
+  editProfileUrl,
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {

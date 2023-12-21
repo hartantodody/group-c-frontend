@@ -22,3 +22,4 @@ export { default as VerifyButton } from "./VerifyButton";
 export { default as VerificationSuccess } from "./VerificationSuccess";
 export { default as FailedVerify } from "./FailedVerify";
 export { default as EditProfileForm } from "./EditProfileForm";
+export { default as BackButton } from "./BackButton";

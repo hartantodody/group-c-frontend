@@ -70,3 +70,7 @@ export interface Steps {
   stepsActual: number;
   target?: number;
 }
+
+export interface BackButtonProps {
+  styles: React.HTMLAttributes<HTMLDivElement>["style"];
+}
