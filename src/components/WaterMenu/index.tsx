@@ -70,7 +70,7 @@ const WaterMenu: React.FC = () => {
 
   return (
     <div>
-      <img src='/public/sports-bottle.svg' alt='glass of water icon' />
+      <img src='/public/glass-of-water-with-drop-svgrepo-com.svg' alt='glass of water icon' />
       <Typography variant='h6' style={{ marginBottom: 10 }}>
         Water Intake
       </Typography>
@@ -97,10 +97,11 @@ const WaterMenu: React.FC = () => {
             onClick={() => handleUserInputSubmit(userInput)}
             size='small'
             style={{ margin: 10 }}
+            disabled={loading}
           >
             <Typography variant='body1'>Submit</Typography>
+            {loading && <CircularProgress size={17} sx={{ marginLeft: 1, color: "grey" }} />}
           </Button>
-          {loading && <CircularProgress />}
           <Typography variant='h6' style={{ marginTop: "20px" }}>
             Today's Water intake: {todaysIntake !== null ? `${todaysIntake} glasses` : "Loading..."}
           </Typography>
