@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { fetchAddWaterIntake, fetchWaterIntake } from "../../utils/fetchAPI";
 import "./index.css";
+import { ProgressBar } from "..";
 const WaterMenu: React.FC = () => {
   const [todaysIntake, setTodaysIntake] = useState<number | null>(null);
   const [userInput, setUserInput] = useState<number>(0);
@@ -68,12 +69,15 @@ const WaterMenu: React.FC = () => {
     }
   };
 
+  const waterProgress = (((todaysIntake !== 0 && todaysIntake !== null ? todaysIntake : 0) * 100) / 8).toFixed(2);
+
   return (
     <div>
       <img src='/public/glass-of-water-with-drop-svgrepo-com.svg' alt='glass of water icon' />
       <Typography variant='h6' style={{ marginBottom: 10 }}>
         Water Intake
       </Typography>
+      <ProgressBar now={parseFloat(waterProgress)} />
       <Collapse in={!collapsed}>
         <div>
           <Typography variant='h6' color='primary'>

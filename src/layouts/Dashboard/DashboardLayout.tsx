@@ -2,7 +2,7 @@ import { Typography, Paper, Box } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
 import "./DashboardLayout.css";
-import { Weather } from "../../components"
+import { Weather } from "../../components";
 
 const DashboardLayout = ({
   chartMenu,
@@ -26,15 +26,15 @@ const DashboardLayout = ({
   return (
     <div className='base-layout'>
       <Navbar />
-      <Box sx={{display: "flex", flexDirection:"column"}}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <div className='title'>
-          <Typography variant='h3' color='#FFFFFF' className='user-title'>
+          <Typography variant='h4' color='#FFFFFF' className='user-title'>
             Hi, {/* tambahin nama user pake use context*/}!
           </Typography>
         </div>
-        <div className="weather">
+        <div className='weather'>
           <Weather />
-        </div>        
+        </div>
       </Box>
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
