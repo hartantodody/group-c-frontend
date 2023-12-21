@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
-import { TextField, Select, MenuItem, Button, FormControl, InputLabel, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { TextField, Select, MenuItem, Button, FormControl, InputLabel } from "@mui/material";
 import { fetchRegisterProfile } from "../../utils/fetchAPI";
 import { Profile } from "../../interfaces/interface";
 import Swal from "sweetalert2";
