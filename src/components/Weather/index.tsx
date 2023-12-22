@@ -69,7 +69,7 @@ const Weather = () => {
       ) : (
         <div
           className='weather-container'
-          style={{ padding: 0, background: "transparent", overflow: "hidden", height: expanded ? "" : "65px" }}
+          style={{ padding: 0, background: "transparent", overflow: "hidden", height: expanded ? "" : "60px" }}
         >
           <ReactWeather
             isLoading={isLoading}
