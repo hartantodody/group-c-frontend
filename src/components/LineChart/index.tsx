@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Plot from "react-plotly.js";
-import { CircularProgress, Typography } from "@mui/material";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { CircularProgress, Typography, Paper } from "@mui/material";
 import { fetchGetReport } from "../../utils/fetchAPI";
 
 export interface ReportEntry {
@@ -21,7 +21,7 @@ export interface ReportEntry {
   category: number;
 }
 
-const LineChart: React.FC = () => {
+const LineChartComponent: React.FC = () => {
   const [chartData, setChartData] = useState<any>(null);
 
   const fetchData = async () => {
@@ -29,18 +29,12 @@ const LineChart: React.FC = () => {
       const response = await fetchGetReport();
       const responseData: ReportEntry[] = response.data;
 
-      const chartData = {
-        x: responseData.map((entry) => entry.date),
-        y: responseData.map((entry) => Number(entry.category)),
-        type: "scatter",
-        mode: "lines+markers",
-        fill: "toself",
-        fillcolor: "rgba(83, 205, 226, 0.2)",
-        line: { color: "#53CDE2" },
-        marker: { color: "#53CDE2" },
-      };
+      const chartData = responseData.map((entry) => ({
+        date: entry.date.split("T")[0],
+        score: Number(entry.category),
+      }));
 
-      setChartData([chartData]);
+      setChartData(chartData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,54 +44,34 @@ const LineChart: React.FC = () => {
     fetchData();
   }, []);
 
-  const layout = {
-    xaxis: {
-      type: "category" as const,
-      title: "Date",
-      ticks: "inside" as const,
-      tickfont: {
-        color: "white",
-      },
-    },
-    yaxis: {
-      title: "Category",
-      ticks: "inside" as const,
-      tickfont: {
-        color: "white",
-      },
-      range: [0, 100],
-      tickvals: [0, 25, 50, 75, 100],
-      ticktext: ["0", "25", "50", "75", "100"],
-    },
-    margin: { t: 20, r: 10, l: 10, b: 20 },
-    paper_bgcolor: "rgba(0,0,0,0)",
-    plot_bgcolor: "rgba(0,0,0,0)",
-    autosize: true,
-    responsive: true,
-  };
-
   return (
     <div style={{ margin: "10px" }}>
       <Typography variant='h6' color='white'>
         Weekly Report
       </Typography>
-      {chartData ? (
-        <Plot
-          data={chartData}
-          layout={layout}
-          config={{ responsive: true }}
-          style={{ color: "white" }} // Change the color of the text
-        />
-      ) : (
-        <>
-          <CircularProgress color='info' />
-          <Typography variant='body1' color='white'>
-            Fetching report...
-          </Typography>
-        </>
-      )}
+      <Paper elevation={5} sx={{ borderRadius: 5, padding: "10px" }}>
+        {chartData ? (
+          <ResponsiveContainer width='100%' height={300}>
+            <LineChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray='3 3' />
+              <XAxis dataKey='date' />
+              <YAxis domain={[0, 100]} />
+              <Tooltip />
+              <Legend />
+              <Line type='monotone' dataKey='score' stroke='#53CDE2' activeDot={{ r: 8 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <>
+            <CircularProgress color='info' />
+            <Typography variant='body1' color='white'>
+              Fetching report...
+            </Typography>
+          </>
+        )}
+      </Paper>
     </div>
   );
 };
 
-export default LineChart;
+export default LineChartComponent;
