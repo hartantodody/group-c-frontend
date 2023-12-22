@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import { Chart, LinearScale, CategoryScale, PointElement, LineElement, ChartOptions, registerables } from "chart.js";
-import "chartjs-adapter-luxon";
-import { fetchPostReport, fetchGetReport } from "../../utils/fetchAPI";
+import React, { useEffect, useState } from "react";
+import Plot from "react-plotly.js";
 import { CircularProgress, Typography } from "@mui/material";
-
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, ...registerables);
+import { fetchGetReport } from "../../utils/fetchAPI";
 
 export interface ReportEntry {
   id: number;
@@ -25,93 +21,77 @@ export interface ReportEntry {
   category: number;
 }
 
-const LineChart = () => {
+const LineChart: React.FC = () => {
   const [chartData, setChartData] = useState<any>(null);
 
   const fetchData = async () => {
     try {
-      await fetchPostReport();
-
       const response = await fetchGetReport();
       const responseData: ReportEntry[] = response.data;
 
       const chartData = {
-        labels: responseData.map((entry) => entry.date),
-        datasets: [
-          {
-            label: "Categories Data",
-            data: responseData.map((entry) => Number(entry.category)),
-            fill: true,
-            backgroundColor: "rgba(83, 205, 226, 0.2)",
-            borderColor: "#005792",
-            pointBackgroundColor: "#53CDE2",
-            tension: 0.3,
-          },
-        ],
+        x: responseData.map((entry) => entry.date),
+        y: responseData.map((entry) => Number(entry.category)),
+        type: "scatter",
+        mode: "lines+markers",
+        fill: "toself",
+        fillcolor: "rgba(83, 205, 226, 0.2)",
+        line: { color: "#53CDE2" },
+        marker: { color: "#53CDE2" },
       };
 
-      setChartData(chartData);
+      setChartData([chartData]);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      fetchData();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const options: ChartOptions<"line"> = {
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "day",
-        },
-        ticks: {
-          color: "white",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        max: 100,
-        ticks: {
-          color: "white",
-        },
+  const layout = {
+    xaxis: {
+      type: "category" as const,
+      title: "Date",
+      ticks: "inside" as const,
+      tickfont: {
+        color: "white",
       },
     },
+    yaxis: {
+      title: "Category",
+      ticks: "inside" as const,
+      tickfont: {
+        color: "white",
+      },
+      range: [0, 100],
+      tickvals: [0, 25, 50, 75, 100],
+      ticktext: ["0", "25", "50", "75", "100"],
+    },
+    margin: { t: 20, r: 10, l: 10, b: 20 },
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+    autosize: true,
     responsive: true,
-    animation: false,
-    plugins: {
-      legend: {
-        labels: {
-          color: "white",
-        },
-      },
-    },
   };
 
   return (
-    <div>
-      <Typography variant='h6' color={"white"}>
+    <div style={{ margin: "10px" }}>
+      <Typography variant='h6' color='white'>
         Weekly Report
       </Typography>
       {chartData ? (
-        <Line data={chartData} options={options} />
+        <Plot
+          data={chartData}
+          layout={layout}
+          config={{ responsive: true }}
+          style={{ color: "white" }} // Change the color of the text
+        />
       ) : (
         <>
           <CircularProgress color='info' />
-          <Typography variant='body1' color={"white"}>
+          <Typography variant='body1' color='white'>
             Fetching report...
           </Typography>
         </>

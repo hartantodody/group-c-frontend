@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Typography } from "@mui/material";
 import { fetchFoodConsumed } from "../../utils/fetchAPI";
 import { FoodItem } from "../../interfaces/interface";
 
@@ -36,13 +37,12 @@ const ShowFoodConsumed: React.FC = () => {
       .join(" ");
   };
 
-  if (!Array.isArray(consumedFoodData)) {
-    return <div>No data available</div>;
-  }
-
   return (
     <>
-      <TableContainer component={Paper}>
+      <Typography variant='h6' sx={{ margin: "25px" }}>
+        Today's Food Consumed
+      </Typography>
+      <TableContainer component={Paper} elevation={5}>
         <Table>
           <TableHead>
             <TableRow>
@@ -53,14 +53,23 @@ const ShowFoodConsumed: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {consumedFoodData.map((food: FoodItem, number) => (
-              <TableRow key={food.uniqueId}>
-                <TableCell>{number + 1}</TableCell>
-                <TableCell>{titleCase(food.foodName)}</TableCell>
-                <TableCell>{food.timeConsumed}</TableCell>
-                <TableCell>{food.calories} kcal</TableCell>
-              </TableRow>
-            ))}
+            {consumedFoodData &&
+              consumedFoodData.map((food: FoodItem, number) => (
+                <TableRow key={food.uniqueId}>
+                  <TableCell>{number + 1}</TableCell>
+                  <TableCell>{titleCase(food.foodName)}</TableCell>
+                  <TableCell>{food.timeConsumed}</TableCell>
+                  <TableCell>{food.calories} kcal</TableCell>
+                </TableRow>
+              ))}
+            {!consumedFoodData ||
+              (consumedFoodData.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={4} align='center'>
+                    No data
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

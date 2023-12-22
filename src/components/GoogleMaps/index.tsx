@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { GoogleMap, DirectionsService, DirectionsRenderer, Marker } from "@react-google-maps/api";
-import { Button, Typography, CircularProgress } from "@mui/material";
+import { Button, Typography, CircularProgress, Box } from "@mui/material";
 import { fetchGetSteps, fetchPostSteps } from "../../utils/fetchAPI";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -153,24 +153,22 @@ const GoogleMaps = () => {
   const stepsProgress = (((todaysSteps !== 0 && todaysSteps !== null ? todaysSteps : 0) * 100) / 8000).toFixed(2);
 
   return (
-    <>
-      <img
-        src='public\footsteps-silhouette-variant-svgrepo-com.svg'
-        alt='calories burn icon'
-        style={{ width: "50px" }}
-      />
-      <Typography variant='h6'>Steps</Typography>
+    <div style={{ margin: "10px" }}>
+      <img src='/footsteps-silhouette-variant-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }} />
+      <Typography variant='h6' style={{ marginBottom: 20 }}>
+        Steps
+      </Typography>
       <ProgressBar now={parseFloat(stepsProgress)} />
       <AnimatePresence>
         {expanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 320, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
           >
             <div className='map-border'>
               <GoogleMap
-                mapContainerStyle={{ height: "400px", width: "100%" }}
+                mapContainerStyle={{ height: "250px", width: "100%" }}
                 zoom={10}
                 center={origin}
                 onClick={handleMapClick}
@@ -214,10 +212,12 @@ const GoogleMaps = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
-        {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </Button>
-    </>
+      <Box style={{ marginTop: 20 }}>
+        <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+        </Button>
+      </Box>
+    </div>
   );
 };
 

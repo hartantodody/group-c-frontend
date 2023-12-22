@@ -97,6 +97,7 @@ const FoodSearch: React.FC = () => {
 
   return (
     <div>
+      <img src='/food-svgrepo-com.svg' alt='cuisine icon' style={{ marginRight: 20 }} />
       <TextField
         label='Search for food...'
         variant='outlined'

@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import {
-  LocalizationProvider,
-  MobileDateTimePicker,
-} from "@mui/x-date-pickers";
+import { LocalizationProvider, MobileDateTimePicker } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
@@ -25,12 +22,8 @@ const SleepMenu: React.FC = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const formattedSleepStart = sleepStart
-        ? format(sleepStart, "yyyy-MM-dd HH:mm")
-        : "";
-      const formattedSleepEnd = sleepEnd
-        ? format(sleepEnd, "yyyy-MM-dd HH:mm")
-        : "";
+      const formattedSleepStart = sleepStart ? format(sleepStart, "yyyy-MM-dd HH:mm") : "";
+      const formattedSleepEnd = sleepEnd ? format(sleepEnd, "yyyy-MM-dd HH:mm") : "";
       const newSleep = {
         sleepStart: formattedSleepStart,
         sleepEnd: formattedSleepEnd,
@@ -69,17 +62,12 @@ const SleepMenu: React.FC = () => {
   };
   useEffect(() => {
     now();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [now()]);
 
   return (
     <div style={{ margin: "10px" }}>
-      <img
-        src="public\moon-sleep.svg"
-        alt="moon sleep"
-        style={{ width: "50px" }}
-      ></img>
-      <Typography variant="h5" style={{ marginBottom: 20 }}>
+      <img src='/moon-sleep.svg' alt='moon sleep' style={{ width: "50px" }}></img>
+      <Typography variant='h6' style={{ marginBottom: 20 }}>
         Sleep
       </Typography>
       <ProgressBarComponent now={progressValue} />
@@ -87,13 +75,13 @@ const SleepMenu: React.FC = () => {
         {expanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 263, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
           >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DemoContainer
                 components={["DatePicker"]}
-                sx={{ display: "flex", justifyContent: "center" }}
+                sx={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
               >
                 <div
                   style={{
@@ -102,19 +90,16 @@ const SleepMenu: React.FC = () => {
                     gap: "10px",
                   }}
                 >
-                  <img src="public\sleep-in-bed.svg" alt="Sleep in Bed" />
+                  <img src='/sleep-in-bed.svg' alt='Sleep in Bed' />
                   <MobileDateTimePicker
-                    label="Sleep start time"
-                    format="yyyy-MM-dd HH:mm"
+                    label='Sleep start time'
+                    format='yyyy-MM-dd HH:mm'
                     value={sleepStart}
                     onChange={handleDatePickerSleepStart}
                   />
                 </div>
               </DemoContainer>
-              <DemoContainer
-                components={["DatePicker"]}
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
+              <DemoContainer components={["DatePicker"]} sx={{ display: "flex", justifyContent: "center" }}>
                 <div
                   style={{
                     display: "flex",
@@ -122,36 +107,26 @@ const SleepMenu: React.FC = () => {
                     gap: "10px",
                   }}
                 >
-                  <img src="public\wake-up-bed.svg" alt="Wake up Bed"></img>
+                  <img src='/wake-up-bed.svg' alt='Wake up Bed'></img>
                   <MobileDateTimePicker
-                    label="Wake up time"
-                    format="yyyy-MM-dd HH:mm"
+                    label='Wake up time'
+                    format='yyyy-MM-dd HH:mm'
                     value={sleepEnd}
                     onChange={handleDatePickerSleepEnd}
                   />
                 </div>
               </DemoContainer>
             </LocalizationProvider>
-            <div style={{ marginTop: "10px" }}>
-              <Button
-                variant="contained"
-                color="primary"
-                disabled={loading}
-                onClick={handleSubmit}
-              >
-                <Typography variant="body1">Submit</Typography>
+            <Box style={{ marginTop: 50 }}>
+              <Button variant='contained' color='primary' disabled={loading} onClick={handleSubmit}>
+                <Typography variant='body1'>Submit</Typography>
               </Button>
-            </div>
+            </Box>
           </motion.div>
         )}
       </AnimatePresence>
       <Box style={{ marginTop: 20 }}>
-        <Button
-          onClick={handleExpandClick}
-          variant="outlined"
-          color="primary"
-          className="small-button"
-        >
+        <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
           {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </Button>
       </Box>

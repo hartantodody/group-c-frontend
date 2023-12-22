@@ -65,7 +65,6 @@ const Navbar = () => {
         const data = await response.json();
         setNickname(data.data.nickname);
       } else {
-        // Handle errors
         console.error("Failed to fetch user profile:", response.status, response.statusText);
       }
     } catch (error) {
@@ -139,10 +138,22 @@ const Navbar = () => {
                       <Typography variant='body1' color={"white"}>
                         User : {titleCase(nickname)}
                       </Typography>
-                      <Button className='profile-button' variant='contained' onClick={navigateToUserProfile}>
+                      <Button
+                        className='profile-button'
+                        variant='text'
+                        onClick={navigateToUserProfile}
+                        color='secondary'
+                        sx={{ width: 180 }}
+                      >
                         Profile
                       </Button>
-                      <Button className='add-food-button' variant='contained' onClick={navigateToAddFood}>
+                      <Button
+                        className='add-food-button'
+                        variant='text'
+                        onClick={navigateToAddFood}
+                        color='secondary'
+                        sx={{ width: 180 }}
+                      >
                         Add Food
                       </Button>
                     </>
@@ -150,10 +161,22 @@ const Navbar = () => {
                   {location.pathname === "/user-profile" && (
                     <>
                       <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
-                      <Button className='dahsboard-button' variant='contained' onClick={navigateToDashboard}>
+                      <Button
+                        className='dahsboard-button'
+                        variant='text'
+                        onClick={navigateToDashboard}
+                        color='secondary'
+                        sx={{ width: 180 }}
+                      >
                         Dashboard
                       </Button>
-                      <Button className='add-food-button' variant='contained' onClick={navigateToAddFood}>
+                      <Button
+                        className='add-food-button'
+                        variant='text'
+                        onClick={navigateToAddFood}
+                        color='secondary'
+                        sx={{ width: 180 }}
+                      >
                         Add Food
                       </Button>
                     </>
@@ -171,10 +194,10 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Button className='signup-button' variant='contained' onClick={navigateToRegister}>
+                  <Button className='signup-button' variant='text' onClick={navigateToRegister} color='info'>
                     Sign Up
                   </Button>
-                  <Button className='signin-button' variant='outlined' onClick={navigateToLogin}>
+                  <Button className='signin-button' variant='text' onClick={navigateToLogin} color='secondary'>
                     Sign In
                   </Button>
                 </>

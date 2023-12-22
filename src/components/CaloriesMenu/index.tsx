@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Typography, CircularProgress, Button, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import { Typography, CircularProgress, Button, Table, TableBody, TableCell, TableRow, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -83,23 +83,25 @@ const CaloriesMenu = () => {
 
   return (
     <>
-      <img src='public\fire-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }}></img>
+      <img src='\fire-svgrepo-com.svg' alt='calories burn icon' style={{ width: "50px" }}></img>
       <Typography variant='h6'>Daily Calories</Typography>
       <ProgressBar now={parseFloat(caloriesProgress)} />
       <AnimatePresence>
         {expanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 288, opacity: 1 }}
+            animate={{ height: 268, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
           >
             {loading ? (
               <CircularProgress />
             ) : (
               <>
-                <Button variant='contained' size='small' color='primary' onClick={handleCalculateCalories}>
-                  Calculate
-                </Button>
+                <Box style={{ marginTop: 20 }}>
+                  <Button variant='contained' size='small' color='primary' onClick={handleCalculateCalories}>
+                    Calculate
+                  </Button>
+                </Box>
                 <Table>
                   <TableBody>
                     <TableRow>
@@ -127,17 +129,18 @@ const CaloriesMenu = () => {
                   onClick={handleAddFood}
                   className='small-button-food'
                 >
-                  <AddIcon />{" "}
-                  <img src='public/food-menu-3-svgrepo-com.svg' alt='healthy-food-icon' style={{ width: 35 }} />
+                  <AddIcon /> <img src='/food-menu-3-svgrepo-com.svg' alt='healthy-food-icon' style={{ width: 35 }} />
                 </Button>
               </>
             )}
           </motion.div>
         )}
       </AnimatePresence>
-      <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
-        {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </Button>
+      <Box style={{ marginTop: 20 }}>
+        <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+        </Button>
+      </Box>
     </>
   );
 };

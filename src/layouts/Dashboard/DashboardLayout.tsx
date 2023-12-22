@@ -1,6 +1,6 @@
-import { Typography, Paper, Box } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
-import { Navbar } from "../../layout";
+import { Footer, Navbar } from "../../layout";
 import "./DashboardLayout.css";
 import { Weather } from "../../components";
 
@@ -18,7 +18,7 @@ const DashboardLayout = ({
     padding: 5,
     borderRadius: 5,
     minHeight: 250,
-    minWidth: 300,
+    minWidth: 325,
     backgroundImage: "url(layout-bg-rotated.svg)",
     backgroundSize: 250,
     backgroundPosition: "bottom right",
@@ -33,12 +33,12 @@ const DashboardLayout = ({
           Hi, {nickname}!
         </Typography>
       </div>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <div className='chart'>{chartMenu}</div>
+      <div className='top-container'>
         <div className='weather'>
           <Weather />
         </div>
-      </Box>
+        <div className='chart'>{chartMenu}</div>
+      </div>
       <div className='container'>
         <Paper elevation={5} sx={cardStyles}>
           {moodMenu}
@@ -59,6 +59,7 @@ const DashboardLayout = ({
           {meditationMenu}
         </Paper>
       </div>
+      <Footer />
     </div>
   );
 };

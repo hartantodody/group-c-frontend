@@ -4,20 +4,21 @@ import LineChart from "../../components/LineChart";
 import DashboardLayout from "../../layouts/Dashboard/DashboardLayout";
 import { titleCase } from "../../utils/titleCase";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
   const [nickname, setNickname] = useState<string>("User");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const fetchUserProfile = async () => {
     try {
       const authToken = localStorage.getItem("token");
 
       if (!authToken) {
+        navigate("/home");
         return;
       }
-      console.log(authToken);
 
       const response = await fetch("https://group-c-project.onrender.com/v1/profile", {
         method: "GET",

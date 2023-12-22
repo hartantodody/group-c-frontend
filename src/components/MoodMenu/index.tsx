@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Typography, Button, Grid, Card, CardContent, CardMedia } from "@mui/material";
+import { Typography, Button, Grid, Card, CardContent, CardMedia, Box } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { fetchPostMood, fetchGetMood } from "../../utils/fetchAPI";
-import NeutralMood from "../../../public/neutral.svg";
-import HappyMood from "../../../public/happy.svg";
-import SadMood from "../../../public/sad.svg";
+import NeutralMood from "../../assets/neutral.svg";
+import HappyMood from "../../assets/happy.svg";
+import SadMood from "../../assets/sad.svg";
 import Swal from "sweetalert2";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -66,7 +66,7 @@ const MoodMenu = () => {
 
   return (
     <>
-      <img src='public\happy-icon.svg' alt='mood icon' style={{ width: "50px" }}></img>
+      <img src='/happy-icon.svg' alt='mood icon' style={{ width: "50px" }}></img>
       <Typography variant='h6'>Daily Mood</Typography>
       <AnimatePresence>
         {expanded && (
@@ -137,9 +137,11 @@ const MoodMenu = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
-        {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </Button>
+      <Box style={{ marginTop: 20 }}>
+        <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
+          {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+        </Button>
+      </Box>
     </>
   );
 };

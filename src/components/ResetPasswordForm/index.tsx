@@ -2,13 +2,12 @@ import { Button, TextField, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { useNavigate, useParams } from 'react-router-dom';
-import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ResetPasswordForm = () => {
   // Extract token and userId from URL parameters
   const { token, userId } = useParams<{ token: string; userId: string }>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     password: Yup.string()
@@ -49,7 +48,7 @@ const ResetPasswordForm = () => {
           confirmButtonText: "Okay",
           confirmButtonColor: "#005792",
         });
-        navigate("/login")
+        navigate("/login");
       } catch (error) {
         // Handle errors
       }
@@ -64,10 +63,10 @@ const ResetPasswordForm = () => {
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label="Password"
-            variant="outlined"
-            name="password"
-            type="password"
+            label='Password'
+            variant='outlined'
+            name='password'
+            type='password'
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -77,9 +76,9 @@ const ResetPasswordForm = () => {
         </Grid>
         <Grid item xs={12}>
           <Button
-            type="submit"
-            color="primary"
-            variant="contained"
+            type='submit'
+            color='primary'
+            variant='contained'
             disabled={isFormEmpty}
             style={{ width: 114, borderRadius: 15, marginTop: 25, fontSize: 12 }}
           >

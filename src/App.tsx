@@ -1,8 +1,20 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LandingPage, LoginPage, RegistrationPage, RegisterProfilePage, ProfilePage, DashboardPage, AddFoodConsumedPage, EmailSendPage, ResetPasswordPage, ResendVerifyPage, FailedVerifyPage, EditProfilePage } from "./pages";
+import {
+  LandingPage,
+  LoginPage,
+  RegistrationPage,
+  RegisterProfilePage,
+  ProfilePage,
+  DashboardPage,
+  AddFoodConsumedPage,
+  EmailSendPage,
+  ResetPasswordPage,
+  ResendVerifyPage,
+  FailedVerifyPage,
+  EditProfilePage,
+} from "./pages";
 import { VerificationSuccessPage } from "./pages";
-import React from "react";
 
 function App() {
   return (
