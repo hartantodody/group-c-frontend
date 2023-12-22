@@ -12,13 +12,13 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUserProfile();
     const queryParams = new URLSearchParams(location.search);
     const token = queryParams.get("token");
 
     if (token) {
       localStorage.setItem("token", token);
     }
+    fetchUserProfile();
   }, [location.search]);
 
   const fetchUserProfile = async () => {
