@@ -1,12 +1,22 @@
+.css-140f5oz {
+    padding: 0 !important;
+    margin: 0 !important;
+}
 .rw-container-main{
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
+    overflow: hidden;
+    margin-right: 2vw;
 }
 
 .rw-container-header{
-    font-size: small !important;
+    font-size: 12px !important;
     text-align: center !important;
+}
+
+.rw-today-date{
+    font-size: 12px !important;
 }
 
 .rw-today-current {
@@ -18,11 +28,11 @@
 }
 
 .rw-today-desc {
-    font-size: 10px !important;
+    font-size: 9px !important;
 }
 
 .rw-today-info {
-    font-size: 12px !important;
+    font-size: 9px !important;
 }
 
 .rw-today-hr {
@@ -38,19 +48,22 @@
 .rw-container-left {
     width: 100% !important;
     margin: 2px !important;
-    padding: 5px !important;
-    padding-right: 20px !important;
+    padding-right: 10px !important;
 }
 
 @media (min-width: 767px) {
+    .rw-container-main {
+        margin: auto !important;
+    }
+
     .rw-container-right {
         display: block !important;
         text-align: center !important;
-        width: 50% !important;
+        width: 55% !important;
     }
 
     .rw-container-left {
-        width: auto !important;
+        width: 45% !important;
     }
 
     .button-header {

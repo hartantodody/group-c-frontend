@@ -32,7 +32,7 @@ const DashboardLayout = ({
           Hi, {/* tambahin nama user pake use context*/}!
         </Typography>
       </div>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", width: "100svh", gap: 0}}>
         <div className='chart'>{chartMenu}</div>
         <div className='weather'>
           <Weather />

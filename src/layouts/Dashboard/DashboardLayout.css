@@ -17,7 +17,7 @@ body {
 }
 
 .weather{
-  width: 50%;
+  width: 30%;
 }
 
 .user-title{
@@ -37,8 +37,9 @@ padding: 15px
 }
 
 .chart{
-  width: 100%;
-  padding: 0 50px;
+  width: 66%;
+  max-width: 66%;
+  padding-left: 5px;
 }
 
 .container {
