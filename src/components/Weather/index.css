@@ -51,7 +51,7 @@
     padding-right: 10px !important;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 768px) {
     .rw-container-right {
         display: block !important;
         text-align: center !important;

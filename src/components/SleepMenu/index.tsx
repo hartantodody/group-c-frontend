@@ -79,7 +79,7 @@ const SleepMenu: React.FC = () => {
         alt="moon sleep"
         style={{ width: "50px" }}
       ></img>
-      <Typography variant="h5" style={{ marginBottom: 20 }}>
+      <Typography variant="h5" style={{ marginBottom: 10 }}>
         Sleep
       </Typography>
       <ProgressBarComponent now={progressValue} />
@@ -145,7 +145,7 @@ const SleepMenu: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Box style={{ marginTop: 20 }}>
+      <Box>
         <Button
           onClick={handleExpandClick}
           variant="outlined"
