@@ -79,14 +79,11 @@ const SleepMenu: React.FC = () => {
             exit={{ height: 0, opacity: 0 }}
           >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DemoContainer
-                components={["DatePicker"]}
-                sx={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
-              >
+              <DemoContainer components={["DatePicker"]} sx={{ display: "flex", justifyContent: "center" }}>
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "center",
                     gap: "10px",
                   }}
                 >
@@ -96,6 +93,7 @@ const SleepMenu: React.FC = () => {
                     format='yyyy-MM-dd HH:mm'
                     value={sleepStart}
                     onChange={handleDatePickerSleepStart}
+                    sx={{ width: "80%" }}
                   />
                 </div>
               </DemoContainer>
@@ -103,7 +101,7 @@ const SleepMenu: React.FC = () => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "center",
                     gap: "10px",
                   }}
                 >
@@ -113,6 +111,7 @@ const SleepMenu: React.FC = () => {
                     format='yyyy-MM-dd HH:mm'
                     value={sleepEnd}
                     onChange={handleDatePickerSleepEnd}
+                    sx={{ width: "80%" }}
                   />
                 </div>
               </DemoContainer>
