@@ -1,3 +1,8 @@
+.navbar {
+    background: linear-gradient(#2FB9D1, #005792 );
+}
+
+
 .navbar-container {
     position: relative;
     display: flex;
