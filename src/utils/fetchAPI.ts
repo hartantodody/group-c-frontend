@@ -13,6 +13,7 @@ import {
   moodUrl,
   reportUrl,
   allReportUrl,
+  allFoodConsumedUrl,
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
@@ -126,6 +127,40 @@ export const fetchFoodConsumed = async () => {
     const token = localStorage.getItem("token");
     const response = await fetch(caloriesUrl, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchAllFoodConsumed = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(allFoodConsumedUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchDeleteFoodConsumed = async (values: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(foodConsumedUrl + `/${values}`, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

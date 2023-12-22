@@ -10,7 +10,6 @@ import { Button, Avatar } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Typography } from "@mui/material";
-import { titleCase } from "../../utils/titleCase";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -136,7 +135,7 @@ const Navbar = () => {
                     <>
                       <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
                       <Typography variant='body1' color={"white"}>
-                        User : {titleCase(nickname)}
+                        User : {nickname}
                       </Typography>
                       <Button
                         className='profile-button'

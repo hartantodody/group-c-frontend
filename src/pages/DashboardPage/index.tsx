@@ -2,7 +2,6 @@ import { useState } from "react";
 import { CaloriesMenu, GoogleMaps, MeditationMenu, MoodMenu, SleepMenu, WaterMenu } from "../../components";
 import LineChart from "../../components/LineChart";
 import DashboardLayout from "../../layouts/Dashboard/DashboardLayout";
-import { titleCase } from "../../utils/titleCase";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -51,7 +50,7 @@ const DashboardPage = () => {
 
   return (
     <DashboardLayout
-      nickname={titleCase(nickname)}
+      nickname={nickname}
       chartMenu={<LineChart />}
       caloriesMenu={<CaloriesMenu />}
       sleepMenu={<SleepMenu />}

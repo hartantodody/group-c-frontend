@@ -10,6 +10,7 @@ export const registerProfileUrl = baseUrl + "/v1/profile";
 export const editProfileUrl = baseUrl + "/v1/profile";
 export const caloriesUrl = baseUrl + "/v1/calories";
 export const foodConsumedUrl = baseUrl + "/v1/consume";
+export const allFoodConsumedUrl = baseUrl + "/v1/all-consume";
 export const waterUrl = baseUrl + "/v1/water";
 export const sleepUrl = baseUrl + "/v1/sleep";
 export const meditationUrl = baseUrl + "/v1/meditation";
