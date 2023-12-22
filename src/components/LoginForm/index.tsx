@@ -10,7 +10,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { fetchLogin } from "../../utils/fetchAPI";
 import { Login } from "../../interfaces/interface";
-import { GoogleAuthButton } from "..";
 
 const LoginForm = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -115,10 +114,6 @@ const LoginForm = () => {
         mt={3}
         textAlign='center'
       >
-        <Typography variant='body1' color='black' mt={2}>
-          Or continue with:
-        </Typography>
-        <GoogleAuthButton buttonText='Sign in' />
         <Typography variant='body1' color='black' mt={5}>
           Doesn't have an account?
         </Typography>

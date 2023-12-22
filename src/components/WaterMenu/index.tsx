@@ -109,14 +109,14 @@ const WaterMenu: React.FC = () => {
                 <Typography variant='body1'>Submit</Typography>
                 {loading && <CircularProgress size={17} sx={{ marginLeft: 1, color: "grey" }} />}
               </Button>
-              <Typography variant='h6' style={{ marginTop: "20px" }}>
+              <Typography variant='h6' style={{ marginTop: "10px" }}>
                 Today's Water intake: {todaysIntake !== null ? `${todaysIntake} glasses` : "Loading..."}
               </Typography>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      <Box style={{ marginTop: 20 }}>
+      <Box style={{ marginTop: 10 }}>
         <Button onClick={handleExpandClick} variant='outlined' color='primary' className='small-button'>
           {!expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </Button>

@@ -7,7 +7,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { GoogleAuthButton } from "..";
 import { fetchRegister } from "../../utils/fetchAPI";
 import { Register } from "../../interfaces/interface";
 import Swal from "sweetalert2";
@@ -175,10 +174,6 @@ const RegistrationForm = () => {
         mt={3}
         textAlign='center'
       >
-        <Typography variant='body1' color='black' mt={2}>
-          Or continue with :
-        </Typography>
-        <GoogleAuthButton buttonText='Sign up' />
         <Typography color='black' variant='body1' mt={5}>
           Already have an account?
         </Typography>

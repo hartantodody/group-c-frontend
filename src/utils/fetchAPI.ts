@@ -13,7 +13,6 @@ import {
   moodUrl,
   reportUrl,
   allReportUrl,
-  allFoodConsumedUrl,
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
@@ -142,7 +141,7 @@ export const fetchFoodConsumed = async () => {
 export const fetchAllFoodConsumed = async () => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(allFoodConsumedUrl, {
+    const response = await fetch(foodConsumedUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

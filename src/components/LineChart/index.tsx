@@ -28,11 +28,13 @@ const LineChartComponent: React.FC = () => {
     try {
       const response = await fetchGetReport();
       const responseData: ReportEntry[] = response.data;
+      console.log("data fetched :", responseData);
 
       const chartData = responseData.map((entry) => ({
         date: entry.date.split("T")[0],
         score: Number(entry.category),
       }));
+      console.log("mapped data : ", chartData);
 
       setChartData(chartData);
     } catch (error) {
