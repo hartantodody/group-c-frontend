@@ -9,17 +9,19 @@ import "./index.css";
 import { Button, Avatar } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import React from "react";
+import { Typography } from "@mui/material";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [nickname, setNickname] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
     setIsLoggedIn(!!getToken);
+    fetchUserProfile();
   }, []);
 
   const toggleMenu = () => {
@@ -41,6 +43,41 @@ const Navbar = () => {
       confirmButtonColor: "#005792",
     });
     navigate("/landing-page");
+  };
+
+  const fetchUserProfile = async () => {
+    try {
+      const authToken = localStorage.getItem("token");
+
+      if (!authToken) {
+        return;
+      }
+      console.log(authToken);
+
+      const response = await fetch("https://group-c-project.onrender.com/v1/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      if (response.status == 201) {
+        const data = await response.json();
+        setNickname(data.data.nickname);
+      } else {
+        // Handle errors
+        console.error("Failed to fetch user profile:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:");
+    }
+  };
+
+  const titleCase = (str: string) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   const navigateToRegister = () => {
@@ -66,16 +103,16 @@ const Navbar = () => {
   return (
     <>
       <motion.div
-        className="navbar-container"
+        className='navbar-container'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <motion.img
-          className="logo"
+          className='logo'
           src={mainLogo}
-          alt="Helena Main Logo"
+          alt='Helena Main Logo'
           initial={{ x: 400, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -87,71 +124,50 @@ const Navbar = () => {
         </IconButton>
 
         {/* Drawer for the menu */}
-        <Drawer anchor="right" open={isMenuOpen} onClose={toggleMenu}>
+        <Drawer anchor='right' open={isMenuOpen} onClose={toggleMenu}>
           <motion.div
-            className="menu-content"
+            className='menu-content'
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 25, opacity: 1 }}
             exit={{ x: -100, opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <div className="close-container">
-              <IconButton className="close-button" onClick={closeMenu}>
+            <div className='close-container'>
+              <IconButton className='close-button' onClick={closeMenu}>
                 <CloseIcon />
               </IconButton>
             </div>
-            <div className="content-inmenu">
+            <div className='content-inmenu'>
               {isLoggedIn ? (
                 <>
-                  {location.pathname === '/' && (
+                  {location.pathname === "/" && (
                     <>
-                      <Avatar
-                        alt="User Avatar"
-                        src="path/to/user/avatar.jpg"
-                        onClick={navigateToUserProfile}
-                      />
-                      <Button
-                        className="profile-button"
-                        variant="contained"
-                        onClick={navigateToUserProfile}
-                      >
+                      <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
+                      <Typography variant='body1' color={"white"}>
+                        User : {titleCase(nickname)}
+                      </Typography>
+                      <Button className='profile-button' variant='contained' onClick={navigateToUserProfile}>
                         Profile
                       </Button>
-                      <Button
-                        className="add-food-button"
-                        variant="contained"
-                        onClick={navigateToAddFood}
-                      >
+                      <Button className='add-food-button' variant='contained' onClick={navigateToAddFood}>
                         Add Food
                       </Button>
                     </>
                   )}
-                  {location.pathname === '/user-profile' && (
+                  {location.pathname === "/user-profile" && (
                     <>
-                      <Avatar
-                        alt="User Avatar"
-                        src="path/to/user/avatar.jpg"
-                        onClick={navigateToUserProfile}
-                      />
-                      <Button
-                        className="dahsboard-button"
-                        variant="contained"
-                        onClick={navigateToDashboard}
-                      >
+                      <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
+                      <Button className='dahsboard-button' variant='contained' onClick={navigateToDashboard}>
                         Dashboard
                       </Button>
-                      <Button
-                        className="add-food-button"
-                        variant="contained"
-                        onClick={navigateToAddFood}
-                      >
+                      <Button className='add-food-button' variant='contained' onClick={navigateToAddFood}>
                         Add Food
                       </Button>
                     </>
                   )}
                   <Button
-                    className="logout-button"
-                    variant="contained"
+                    className='logout-button'
+                    variant='contained'
                     onClick={() => {
                       handleLogout();
                       setIsMenuOpen(false);
@@ -162,18 +178,10 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Button
-                    className="signup-button"
-                    variant="contained"
-                    onClick={navigateToRegister}
-                  >
+                  <Button className='signup-button' variant='contained' onClick={navigateToRegister}>
                     Sign Up
                   </Button>
-                  <Button
-                    className="signin-button"
-                    variant="outlined"
-                    onClick={navigateToLogin}
-                  >
+                  <Button className='signin-button' variant='outlined' onClick={navigateToLogin}>
                     Sign In
                   </Button>
                 </>

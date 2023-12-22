@@ -37,9 +37,8 @@ padding: 15px
 }
 
 .chart{
-  width: 100svw;
-  padding: 50px;
-  background-color: #ffffff;
+  width: 100%;
+  padding: 0 50px;
 }
 
 .container {
@@ -62,13 +61,14 @@ padding: 15px
   /* Media queries for larger screens */
   @media (min-width: 480px) {
     .container {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      padding: 25;
     }
   }
   
   @media (min-width: 768px) {
     .container {
-      grid-template-columns: repeat(auto-fill, minmax(350px, 2fr));
+      grid-template-columns: repeat(2, 1fr);
+      padding: 50px;
     }
   }
   
