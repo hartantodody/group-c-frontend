@@ -11,6 +11,7 @@ const DashboardLayout = ({
   sleepMenu,
   stepsMenu,
   meditationMenu,
+  moodMenu,
 }: DashboardLayoutProps) => {
   const cardStyles = {
     padding: 5,
@@ -38,6 +39,9 @@ const DashboardLayout = ({
       </Box>
       <div className='chart'>{chartMenu}</div>
       <div className='container'>
+        <Paper elevation={5} sx={cardStyles}>
+          {moodMenu}
+        </Paper>
         <Paper elevation={5} sx={cardStyles}>
           {caloriesMenu}
         </Paper>

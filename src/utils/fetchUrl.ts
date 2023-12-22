@@ -14,3 +14,6 @@ export const waterUrl = baseUrl + "/v1/water";
 export const sleepUrl = baseUrl + "/v1/sleep";
 export const meditationUrl = baseUrl + "/v1/meditation";
 export const stepsUrl = baseUrl + "/v1/steps";
+export const moodUrl = baseUrl + "/v1/mood";
+export const reportUrl = baseUrl + "/v1/report";
+export const allReportUrl = baseUrl + "/v1/all-report";
