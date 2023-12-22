@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Typography, Paper, Box } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
@@ -12,6 +13,7 @@ const DashboardLayout = ({
   stepsMenu,
   meditationMenu,
   moodMenu,
+  nickname,
 }: DashboardLayoutProps) => {
   const cardStyles = {
     padding: 5,
@@ -29,7 +31,7 @@ const DashboardLayout = ({
       <Navbar />
       <div className='title'>
         <Typography variant='h4' color='#FFFFFF' className='user-title' paddingLeft={"50px"}>
-          Hi, {/* tambahin nama user pake use context*/}!
+          Hi, {nickname}!
         </Typography>
       </div>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
