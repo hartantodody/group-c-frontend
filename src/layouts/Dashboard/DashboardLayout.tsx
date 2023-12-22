@@ -33,7 +33,7 @@ const DashboardLayout = ({
           Hi, {nickname}!
         </Typography>
       </div>
-      <Box sx={{ display: "flex", justifyContent: "space-between", width: "100svh", gap: 0}}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", width: "100svw", paddingLeft: "1vw", paddingRight: "2vw"}}>
         <div className='chart'>{chartMenu}</div>
         <div className='weather'>
           <Weather />

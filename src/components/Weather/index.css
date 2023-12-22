@@ -1,13 +1,13 @@
-.css-140f5oz {
+.css-140f5oz .rw-container-left {
     padding: 0 !important;
     margin: 0 !important;
 }
 .rw-container-main{
     width: 100% !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: space-evenly !important;
     overflow: hidden;
-    margin-right: 2vw;
+    padding-right: 24px !important;
 }
 
 .rw-container-header{
@@ -28,15 +28,15 @@
 }
 
 .rw-today-desc {
-    font-size: 9px !important;
+    font-size: 10px !important;
 }
 
 .rw-today-info {
-    font-size: 9px !important;
+    font-size: 10px !important;
 }
 
 .rw-today-hr {
-    margin: 6px !important;
+    margin: 7px !important;
     margin-left: 0 !important;
 }
 
@@ -52,24 +52,35 @@
 }
 
 @media (min-width: 767px) {
-    .rw-container-main {
-        margin: auto !important;
-    }
-
     .rw-container-right {
         display: block !important;
         text-align: center !important;
-        width: 55% !important;
-    }
-
-    .rw-container-left {
-        width: 45% !important;
     }
 
     .button-header {
         display: none !important;
     }
 
+    .rw-container-header{
+        font-size: 16px !important;
+    }
+
+    .rw-today-date{
+        font-size: 14px !important;
+    }
+
+    .rw-today-current {
+        font-size: 28px !important;
+    }
+
+    .rw-today-desc {
+        font-size: 12px !important;
+    }
+
+    .rw-today-info {
+        font-size: 12px !important;
+    }
+    
     .weather-container {
         height: 100% !important;
     }
