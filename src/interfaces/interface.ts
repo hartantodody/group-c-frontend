@@ -32,6 +32,7 @@ export interface DashboardLayoutProps {
   sleepMenu?: ReactNode;
   meditationMenu?: ReactNode;
   titleText?: string;
+  moodMenu?: ReactNode;
 }
 
 export interface ButtonProps {
@@ -73,4 +74,26 @@ export interface Steps {
 
 export interface BackButtonProps {
   styles: React.HTMLAttributes<HTMLDivElement>["style"];
+}
+
+export interface Mood {
+  currentMood: string;
+}
+
+export interface ReportEntry {
+  id: number;
+  date: string;
+  userId: number;
+  sleepActual: number;
+  sleepTarget: number;
+  stepsActual: number;
+  stepsTarget: number;
+  foodCaloriesActual: number;
+  foodCaloriesTarget: number;
+  waterActual: number;
+  waterTarget: number;
+  meditationActual: number;
+  meditationTarget: number;
+  mood: string;
+  category: number;
 }

@@ -1,4 +1,4 @@
-import { Meditation, Water, Login, Profile, Register, Sleep, Steps } from "./../interfaces/interface";
+import { Meditation, Water, Login, Profile, Register, Sleep, Steps, Mood } from "./../interfaces/interface";
 import {
   loginUrl,
   registerUrl,
@@ -10,6 +10,9 @@ import {
   stepsUrl,
   editProfileUrl,
   foodConsumedUrl,
+  moodUrl,
+  reportUrl,
+  allReportUrl,
 } from "./fetchUrl";
 
 export const fetchLogin = async (values: Login) => {
@@ -340,6 +343,108 @@ export const fetchGetSteps = async () => {
     return data;
   } catch (error) {
     console.error("Error in fetchGetSleep:", error);
+    throw error;
+  }
+};
+
+export const fetchPostMood = async ({ currentMood }: Mood) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(moodUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ currentMood }),
+    });
+
+    console.log("Mood sent to backend :", currentMood);
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to save your mood status!");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchPostMood:", error);
+    throw error;
+  }
+};
+
+export const fetchGetMood = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(moodUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to get mood");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchGetMood:", error);
+    throw error;
+  }
+};
+
+export const fetchPostReport = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(reportUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to send your daily report progress!");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchPostReport:", error);
+    throw error;
+  }
+};
+
+export const fetchGetReport = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(allReportUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to get weekly report");
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    return data;
+  } catch (error) {
+    console.error("Error in fetchGetReport:", error);
     throw error;
   }
 };

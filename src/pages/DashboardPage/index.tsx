@@ -1,5 +1,6 @@
+import { CaloriesMenu, GoogleMaps, MeditationMenu, MoodMenu, SleepMenu, WaterMenu } from "../../components";
+import LineChart from "../../components/LineChart";
 import React from "react";
-import { CaloriesMenu, GoogleMaps, MeditationMenu, SleepMenu, WaterMenu } from "../../components";
 import DashboardLayout from "../../layouts/Dashboard/DashboardLayout";
 
 import { useEffect } from 'react';
@@ -18,11 +19,13 @@ const DashboardPage = () => {
   }, [location.search]);
   return (
     <DashboardLayout
+      chartMenu={<LineChart />}
       caloriesMenu={<CaloriesMenu />}
       sleepMenu={<SleepMenu />}
       stepsMenu={<GoogleMaps />}
       waterMenu={<WaterMenu />}
       meditationMenu={<MeditationMenu />}
+      moodMenu={<MoodMenu />}
     />
   );
 };

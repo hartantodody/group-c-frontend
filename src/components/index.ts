@@ -24,3 +24,4 @@ export { default as FailedVerify } from "./FailedVerify";
 export { default as EditProfileForm } from "./EditProfileForm";
 export { default as BackButton } from "./BackButton";
 export { default as ProgressBar } from "./ProgressBar";
+export { default as MoodMenu } from "./MoodMenu";
