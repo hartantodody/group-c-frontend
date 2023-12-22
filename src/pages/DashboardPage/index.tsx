@@ -11,6 +11,16 @@ const DashboardPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchUserProfile();
+    const queryParams = new URLSearchParams(location.search);
+    const token = queryParams.get("token");
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+  }, [location.search]);
+
   const fetchUserProfile = async () => {
     try {
       const authToken = localStorage.getItem("token");
@@ -30,7 +40,6 @@ const DashboardPage = () => {
         const data = await response.json();
         setNickname(data.data.nickname);
       } else {
-        // Handle errors
         console.error("Failed to fetch user profile:", response.status, response.statusText);
       }
     } catch (error) {
@@ -38,15 +47,6 @@ const DashboardPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchUserProfile();
-    const queryParams = new URLSearchParams(location.search);
-    const token = queryParams.get("token");
-
-    if (token) {
-      localStorage.setItem("token", token);
-    }
-  }, [location.search]);
   return (
     <DashboardLayout
       nickname={titleCase(nickname)}
