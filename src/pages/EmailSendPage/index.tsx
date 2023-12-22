@@ -4,7 +4,7 @@ import PublicLayout from "../../layouts/Public/PublicLayout";
 const EmailSendPage = () => {
     return (
       <>
-        <PublicLayout titleText={"Recover Password"} children={EmailSendForm()} />
+        <PublicLayout titleText={"Reset Request"} children={EmailSendForm()} />
       </>
     );
   };

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { PublicLayoutProps } from "../../interfaces/interface";
 import "./PublicLayout.css";
 import Typography from "@mui/material/Typography";
+import { BackButton } from "../../components";
 
 const typographyStyle: React.CSSProperties = {
   paddingTop: "65px",
@@ -30,6 +31,9 @@ const PublicLayout = ({ children, titleText }: PublicLayoutProps) => {
         <img src='logo-white.svg' alt='Logo' className='logo' style={{ width: 284, padding: "95px 0 78px 0" }} />
       </a>
       <motion.div className='card' variants={cardMotion} initial='hidden' animate='visible'>
+        <div style={{ position: "absolute", top: 0, left: 0, margin: "10px 0 0 10px" }}>
+          <BackButton />
+        </div>
         <Typography variant='h5' style={typographyStyle}>
           {titleText}
         </Typography>
