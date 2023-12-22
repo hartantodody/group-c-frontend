@@ -27,7 +27,7 @@ const DashboardLayout = ({
   return (
     <div className='base-layout'>
       <Navbar />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <div className='title'>
           <Typography variant='h4' color='#FFFFFF' className='user-title'>
             Hi, {/* tambahin nama user pake use context*/}!

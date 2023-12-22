@@ -1,3 +1,4 @@
+import React from "react";
 import { ResetPasswordForm } from "../../components";
 import PublicLayout from "../../layouts/Public/PublicLayout";
 
