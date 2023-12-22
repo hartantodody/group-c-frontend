@@ -19,12 +19,17 @@ body {
   flex-direction: column;
 }
 
-.title{
-  width: 50%;
+.title {
+  width: 100%;
 }
 
-.weather{
-  width: 50%;
+.weather {
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  padding: 0 20px;
 }
 
 .user-title {
@@ -43,10 +48,7 @@ body {
   min-height: 100vh;
 }
 
-.chart{
-  width: 100%;
-  padding: 0 50px;
-}
+
 
 .container {
   padding: 15px;
