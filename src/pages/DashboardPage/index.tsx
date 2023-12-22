@@ -17,17 +17,17 @@ const DashboardPage = () => {
     if (token) {
       localStorage.setItem("token", token);
     }
-  }, [location.search]);
 
-  const authToken = localStorage.getItem("token");
-  if (!authToken) {
-    navigate("/home");
-    return;
-  }
+    fetchUserProfile();
+  }, [location.search]);
 
   const fetchUserProfile = async () => {
     try {
       const authToken = localStorage.getItem("token");
+      if (!authToken) {
+        navigate("/home");
+        return;
+      }
 
       const response = await fetch("https://group-c-project.onrender.com/v1/profile", {
         method: "GET",
@@ -45,8 +45,6 @@ const DashboardPage = () => {
       console.error("Error fetching user profile:");
     }
   };
-
-  fetchUserProfile();
 
   return (
     <DashboardLayout

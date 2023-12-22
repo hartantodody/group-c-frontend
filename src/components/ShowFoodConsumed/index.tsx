@@ -31,16 +31,6 @@ const ShowFoodConsumed = () => {
     fetchData();
   }, []);
 
-  const titleCase = (str: string | undefined) => {
-    if (!str) return "";
-
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
   const handleRemove = (uniqueId: string | undefined) => {
     if (uniqueId === undefined) {
       console.error("Invalid uniqueId:", uniqueId);
