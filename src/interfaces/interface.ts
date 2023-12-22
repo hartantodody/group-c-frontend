@@ -33,6 +33,7 @@ export interface DashboardLayoutProps {
   meditationMenu?: ReactNode;
   titleText?: string;
   moodMenu?: ReactNode;
+  nickname?: string;
 }
 
 export interface ButtonProps {

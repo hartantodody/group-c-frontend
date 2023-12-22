@@ -10,6 +10,7 @@ import { Button, Avatar } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Typography } from "@mui/material";
+import { titleCase } from "../../utils/titleCase";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,14 +71,6 @@ const Navbar = () => {
     } catch (error) {
       console.error("Error fetching user profile:");
     }
-  };
-
-  const titleCase = (str: string) => {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
   };
 
   const navigateToRegister = () => {
