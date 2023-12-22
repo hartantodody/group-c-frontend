@@ -1,5 +1,5 @@
 import { UserProfile, BackButton } from "../../components";
-import profileImage from "../../assets/ProfilePageAssets/Group 44.jpg";
+import { Avatar } from "@mui/material";
 import "./index.css";
 import { Navbar } from "../../layout";
 
@@ -8,7 +8,9 @@ const ProfilePage = () => {
     <>
       <div className='profile-container'>
         <Navbar />
-        <img className='profile-image' src={profileImage} alt='' />
+        <div className='profile-picture'>
+          <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' sx={{ minHeight: "100px", minWidth: "100px" }} />
+        </div>
         <div className='card'>
           <div style={{ position: "absolute", top: 0, left: 0, margin: "10px 0 0 10px" }}>
             <BackButton />

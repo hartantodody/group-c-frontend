@@ -8,9 +8,12 @@
     background-repeat: no-repeat;
 }
 
-.profile-image {
-    max-width: 100px;
-    min-width: 70px;
+.profile-picture {
+    height: 100;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .profile-name {
