@@ -30,7 +30,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-geocode": "^1.0.0-alpha.1",
-    "react-open-weather": "^0.0.5",
+    "react-open-weather": "^1.3.2",
     "react-router-dom": "^6.20.1",
     "sweetalert2": "^11.6.13",
     "yup": "^1.3.2"

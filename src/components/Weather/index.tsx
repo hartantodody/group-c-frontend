@@ -67,7 +67,7 @@ const Weather = () => {
       {loadingLocation ? (
         <p>Loading location...</p>
       ) : (
-        <div className='container' style={{padding: 0, background: "transparent", overflow: "hidden", height: expanded ? '': "65px"}}>
+        <div className='weather-container' style={{padding: 0, background: "transparent", overflow: "hidden", height: expanded ? '': "65px"}}>
           <ReactWeather
             isLoading={isLoading}
             errorMessage={errorMessage}
