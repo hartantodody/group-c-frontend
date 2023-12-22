@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Typography, Paper, Box } from "@mui/material";
 import { DashboardLayoutProps } from "../../interfaces/interface";
 import { Navbar } from "../../layout";
