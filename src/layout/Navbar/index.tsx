@@ -159,7 +159,7 @@ const Navbar = () => {
                   )}
                   {location.pathname === "/user-profile" && (
                     <>
-                      <Avatar alt='User Avatar' src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
+                      <Avatar alt={nickname} src='path/to/user/avatar.jpg' onClick={navigateToUserProfile} />
                       <Button
                         className='dahsboard-button'
                         variant='text'
