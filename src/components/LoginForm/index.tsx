@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { fetchLogin } from "../../utils/fetchAPI";
 import { Login } from "../../interfaces/interface";
+import { GoogleAuthButton } from "..";
 
 const LoginForm = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -105,6 +106,7 @@ const LoginForm = () => {
           {isSubmitting ? <CircularProgress /> : "Sign In"}
         </Button>
       </form>
+      <GoogleAuthButton buttonText={"Sign in with Google"} />
       <Box
         display='flex'
         flexDirection='column'

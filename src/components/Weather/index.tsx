@@ -21,7 +21,7 @@ const Weather = () => {
         });
 
         try {
-          const apiKey = "b276b18495104566b7d18e6f8358d1cf";
+          const apiKey = "0a5bfb06e55f48fbbe8854f59a730a1d";
           const response = await fetch(
             `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${apiKey}`
           );
@@ -51,7 +51,7 @@ const Weather = () => {
   }, []);
 
   const { data, isLoading, errorMessage } = useVisualCrossing({
-    key: "XG2RLQGVDVUEJU5RA76ZNSJ3U",
+    key: "62LB4H7S694AMPZB36YYRELVS",
     lat: userLocation.lat,
     lon: userLocation.lon,
     lang: "en",
